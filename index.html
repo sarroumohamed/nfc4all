@@ -3,513 +3,468 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="color-scheme" content="dark">
-<meta name="theme-color" content="#0E0E0F">
-
-<!-- ==========================================================================
-     nfc4all · القالب 2 — "NOIR" (داكن فخم)
-     ملف واحد · عربي / فرنسي / إنجليزي · بدون خطوط أو مكتبات خارجية
-     ==========================================================================
-
-     ▼▼▼ منطقة التعديل 1 من 2 — معاينة الواتساب ▼▼▼
-     الواتساب يقرأ هذه الأسطر فقط (ما كيقراش JavaScript)، لذلك اكتبها يدوياً: -->
-<title>مقهى أطلس — الدار البيضاء</title>
-<meta name="description" content="مقهى ومحمصة قهوة في الدار البيضاء · قهوة محمّصة طازجة وفطور مغربي">
-<meta property="og:type" content="website">
-<meta property="og:title" content="مقهى أطلس — الدار البيضاء">
-<meta property="og:description" content="قهوة محمّصة طازجة · فطور مغربي · مفتوح 7 أيام">
-<!-- لازم رابط كامل https:// وليس مساراً نسبياً · بدّل USERNAME واسم مجلد العميل: -->
-<meta property="og:image" content="https://USERNAME.github.io/nfc4all/clients/cafe-atlas/img/hero.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<!-- ▲▲▲ نهاية منطقة التعديل 1 ▲▲▲ -->
-
+<meta name="theme-color" content="#831843">
+<meta name="color-scheme" content="light">
+<title id="ttl">Patisserie</title>
 <style>
-*,*::before,*::after{box-sizing:border-box}
-:root{
-  --accent:#C8A96A;          /* يُضبط من ملف الإعدادات أسفل */
-  --accent-tx:#101010;
-  --bg:#0E0E0F; --surface:#17181A; --surface2:#202124;
-  --line:rgba(255,255,255,.10); --line2:rgba(255,255,255,.20);
-  --tx:#F5F3EF; --tx2:rgba(245,243,239,.62);
-  --wa:#3DDC7F; --fb:#5E9FE8; --ig:#E27BB5; --tt:#EDEDED;
-  --serif:Georgia,"Times New Roman","Noto Naskh Arabic","Amiri",serif;
-  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans Arabic","Noto Sans",Helvetica,Arial,sans-serif;
-}
+:root{--ink:#231A1D;--ink2:#7A6B70;--canvas:#F6F1F0;--surface:#FFFFFF;--stroke:#EADFE1;--accent:#BE185D;--accent2:#831843;--gold:#D9B471;--wa:#16A34A;--fb:#2563EB;--ig:#DD2A7B;--tt:#141414;--star:#F59E0B;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans Arabic","Helvetica Neue",Arial,sans-serif;--serif:Georgia,"Times New Roman","Noto Sans Arabic",serif}
+*{box-sizing:border-box}
 html,body{margin:0;padding:0}
-body{background:var(--bg);color:var(--tx);font:16px/1.6 var(--sans);-webkit-font-smoothing:antialiased;
-  padding-bottom:calc(100px + env(safe-area-inset-bottom))}
-img{max-width:100%}
-.wrap{max-width:520px;margin:0 auto}
+body{background:var(--canvas);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+.wrap{max-width:430px;margin:0 auto;padding:16px 16px calc(30px + env(safe-area-inset-bottom))}
+.langbar{display:flex;justify-content:flex-end;gap:6px;margin-bottom:14px}
+.lg{width:44px;height:33px;border-radius:10px;border:1px solid var(--stroke);background:var(--surface);color:var(--ink2);font:700 13px/1 var(--sans);cursor:pointer}
+.lg.on{background:var(--accent2);color:#fff;border-color:var(--accent2)}
 
-/* ---- الشريط العلوي ---- */
-.topbar{position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;gap:12px;
-  padding:12px 18px;background:rgba(14,14,15,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.mark{font:600 15px/1.2 var(--serif);color:var(--accent);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.langs{display:flex;gap:6px;flex:0 0 auto}
-.langs button{min-width:44px;height:36px;padding:0 8px;border:1px solid var(--line2);background:transparent;color:var(--tx2);
-  border-radius:9px;font:600 13px/1 var(--sans);cursor:pointer}
-.langs button[aria-pressed="true"]{border-color:var(--accent);color:var(--accent);background:rgba(200,169,106,.12)}
+/* flip business card */
+.cardwrap{perspective:1200px}
+.flip{position:relative;width:100%;aspect-ratio:1.72/1;transform-style:preserve-3d;transition:transform .65s cubic-bezier(.4,.1,.2,1);cursor:pointer}
+.flip.on{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;border-radius:18px;padding:15px 16px;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;box-shadow:0 18px 38px -22px rgba(35,26,29,.7)}
+.front{background:linear-gradient(135deg,#9F1239 0%,var(--accent2) 58%,#4C0519 100%);color:#fff;display:flex;flex-direction:column;justify-content:space-between}
+.front::after{content:"";position:absolute;inset-inline-end:-40px;top:-50px;width:170px;height:170px;border-radius:50%;background:radial-gradient(circle,rgba(217,180,113,.35),transparent 68%)}
+.fh{display:flex;align-items:center;gap:11px;position:relative;z-index:2}
+.mk{width:52px;height:52px;border-radius:13px;object-fit:cover;border:1.5px solid rgba(217,180,113,.85);flex:0 0 auto}
+.fh h1{margin:0;font-family:var(--serif);font-size:19px;line-height:1.2}
+.fh p{margin:3px 0 0;font-size:11.5px;color:rgba(255,255,255,.8);line-height:1.35}
+.gl{height:2px;border-radius:2px;background:linear-gradient(90deg,var(--gold),rgba(217,180,113,0));margin:10px 0;position:relative;z-index:2}
+.fb2{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;position:relative;z-index:2}
+.fb2 .ph{font-size:14px;font-weight:800}
+.fb2 .ct{font-size:11.5px;color:rgba(255,255,255,.78);text-align:end}
+.back{background:var(--surface);border:1px solid var(--stroke);transform:rotateY(180deg);display:flex;flex-direction:column;justify-content:space-between}
+.bt{margin:0;font-size:12.5px;line-height:1.6;color:var(--ink2)}
+.bl{list-style:none;margin:8px 0 0;padding:0}
+.bl li{display:flex;align-items:center;gap:8px;font-size:12.5px;padding:2px 0}
+.bl svg{width:14px;height:14px;color:var(--accent);flex:0 0 auto}
+.bs{display:flex;gap:8px;margin-top:8px}
+.bs a{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;color:#fff}
+.bs svg{width:15px;height:15px}
+.bs .fb{background:var(--fb)}
+.bs .ig{background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF)}
+.bs .tt{background:var(--tt)}
+.hint{margin:12px auto 0;background:none;border:none;color:var(--ink2);font:600 12px/1 var(--sans);cursor:pointer;display:flex;align-items:center;gap:6px}
+.hint svg{width:13px;height:13px}
 
-/* ---- الواجهة ---- */
-.hero{position:relative;overflow:hidden;padding:36px 22px 32px;text-align:center;border-bottom:1px solid var(--line)}
-.hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.24}
-.hero-sc{position:absolute;inset:0;background:
-  radial-gradient(120% 85% at 50% 0%,rgba(200,169,106,.18),transparent 62%),
-  linear-gradient(180deg,rgba(14,14,15,.45),rgba(14,14,15,.92))}
-.hero-in{position:relative;z-index:2}
-.logo{width:108px;height:108px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 18px;
-  border:1px solid var(--accent);padding:4px;background:var(--bg)}
-.logo.mono{display:flex;align-items:center;justify-content:center;font:400 42px/1 var(--serif);color:var(--accent)}
-h1{margin:0;font:400 30px/1.25 var(--serif)}
-.role{margin:11px 0 0;font-size:12px;font-weight:700;color:var(--accent)}
-html[dir="ltr"] .role{text-transform:uppercase;letter-spacing:.16em}
-.rule{width:54px;height:1px;background:var(--accent);opacity:.55;margin:16px auto}
-.tag{margin:0;color:var(--tx2);font-size:14.5px}
+/* CTA + chips */
+.cta{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:16px}
+.b{display:flex;align-items:center;justify-content:center;gap:7px;height:50px;border-radius:14px;border:1px solid transparent;font:800 14px/1 var(--sans);cursor:pointer;text-decoration:none}
+.b svg{width:17px;height:17px;flex:0 0 auto}
+.b.p{background:var(--accent2);color:#fff}
+.b.s{background:var(--surface);color:var(--ink);border-color:var(--stroke)}
+.b.w{background:var(--wa);color:#fff}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chip{display:inline-flex;align-items:center;gap:7px;padding:9px 13px;border-radius:999px;background:var(--surface);border:1px solid var(--stroke);text-decoration:none;color:var(--ink);font:700 12.5px/1 var(--sans);cursor:pointer}
+.chip svg{width:15px;height:15px;flex:0 0 auto}
+.chip.fb svg{color:var(--fb)}
+.chip.ig svg{color:var(--ig)}
+.chip.tt svg{color:var(--tt)}
+.chip.web svg{color:var(--accent)}
+.chip.mail svg{color:#0EA5E9}
 
-/* ---- أيقونات التواصل ---- */
-.socials{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;padding:20px 18px 0}
-.socials a{width:54px;height:54px;border-radius:50%;border:1px solid var(--line2);background:var(--surface);
-  display:flex;align-items:center;justify-content:center;text-decoration:none;transition:transform .12s ease}
-.socials a:active{transform:scale(.95)}
-.socials svg{width:22px;height:22px}
+/* sections */
+.sec{margin-top:26px}
+.sh{margin:0 0 12px}
+.sh h2{margin:0;font-size:12px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--ink2)}
+.sh i{display:block;width:26px;height:3px;border-radius:3px;background:var(--gold);margin-top:6px}
+.panel{background:var(--surface);border:1px solid var(--stroke);border-radius:18px;padding:13px 14px}
 
-/* ---- الأقسام ---- */
-section{padding:28px 18px 0}
-.sh{display:flex;align-items:center;gap:12px;margin:0 0 14px}
-.sh span{font:700 11.5px/1 var(--sans);color:var(--accent)}
-html[dir="ltr"] .sh span{text-transform:uppercase;letter-spacing:.18em}
-.sh i{flex:1;height:1px;background:var(--line)}
-p.about{margin:0;color:var(--tx2);font-size:15.5px}
+/* menu rows with photos */
+.mr{display:flex;align-items:center;gap:12px;padding:11px 0;border-top:1px solid var(--stroke);text-decoration:none;color:inherit}
+.mr:first-child{border-top:none}
+.mr img{width:60px;height:60px;border-radius:14px;object-fit:cover;flex:0 0 auto;background:var(--canvas)}
+.mb{flex:1;min-width:0;display:block}
+.mn{display:block;font-size:14.5px;font-weight:700}
+.md{display:block;font-size:12px;color:var(--ink2);margin-top:2px;line-height:1.45}
+.mp{font-size:13px;font-weight:800;color:var(--accent);white-space:nowrap}
 
-/* ---- قائمة الأسعار (ستايل مينو) ---- */
-.menu{list-style:none;margin:0;padding:0}
-.menu li{display:flex;align-items:baseline;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}
-.menu li:last-child{border-bottom:0}
-.menu .nm{font-weight:500;font-size:15.5px}
-.menu .dots{flex:1;min-width:18px;border-bottom:1px dotted var(--line2);transform:translateY(-5px)}
-.menu .pr{color:var(--accent);font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+/* wide stacked gallery */
+.wide{display:flex;flex-direction:column;gap:10px}
+.wi{position:relative;display:block;border-radius:18px;overflow:hidden}
+.wi img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+.wi::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,10,14,.55),transparent 58%)}
+.wi span{position:absolute;inset-inline-start:14px;bottom:11px;z-index:2;color:#fff;font-size:12.5px;font-weight:800;text-shadow:0 1px 8px rgba(0,0,0,.55)}
 
-/* ---- معرض أفقي ---- */
-.gal{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
-  padding:2px 18px 8px;margin:0 -18px;scrollbar-width:none}
-.gal::-webkit-scrollbar{display:none}
-.gal button{flex:0 0 68%;aspect-ratio:4/5;border:0;padding:0;margin:0;border-radius:16px;overflow:hidden;
-  background:var(--surface2);scroll-snap-align:center;cursor:pointer}
-.gal img{width:100%;height:100%;object-fit:cover;display:block}
-
-/* ---- صفوف ---- */
-.rows{border:1px solid var(--line);border-radius:16px;background:var(--surface);overflow:hidden}
-.row{display:flex;align-items:center;gap:12px;padding:14px 16px;min-height:58px;border-bottom:1px solid var(--line);
-  text-decoration:none;color:inherit}
-.row:last-child{border-bottom:0}
-.row .ic{width:20px;height:20px;flex:0 0 20px;color:var(--accent)}
-.row .tx{flex:1;min-width:0;font-size:15px}
-.row .tx small{display:block;color:var(--tx2);font-size:12.5px;font-weight:400}
-.row .val{color:var(--tx2);white-space:nowrap;font-variant-numeric:tabular-nums;font-size:14.5px}
-.row .ch{width:15px;height:15px;flex:0 0 15px;color:var(--tx2)}
-html[dir="rtl"] .row .ch{transform:scaleX(-1)}
-.note{margin:10px 2px 0;color:var(--tx2);font-size:13px}
-/* الأرقام والأوقات تبقى من اليسار لليمين داخل النص العربي */
+/* hours + location + review */
+.hrsg{display:grid;grid-template-columns:auto 1fr;gap:7px 14px;font-size:13px;align-items:baseline}
+.hrsg .d{color:var(--ink2)}
+.hrsg .v{font-weight:800;text-align:end}
+.note{margin:10px 0 0;font-size:11.5px;color:var(--ink2);line-height:1.5}
+.loc{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
+.loc .ic{width:42px;height:42px;border-radius:13px;background:#FCE7F0;color:var(--accent);display:grid;place-items:center;flex:0 0 auto}
+.loc .ic svg{width:19px;height:19px}
+.loc .lt{display:block;font-size:13.5px;font-weight:800}
+.loc .lv{display:block;font-size:12px;color:var(--ink2);margin-top:2px;line-height:1.45}
+.rev{margin-top:26px;text-align:center;background:var(--surface);border:1px solid var(--stroke);border-radius:18px;padding:16px 14px}
+.stars{display:flex;justify-content:center;gap:3px;color:var(--star);margin-bottom:8px}
+.stars svg{width:17px;height:17px}
+.rev h3{margin:0;font-family:var(--serif);font-size:16px}
+.rev p{margin:5px 0 13px;font-size:12.5px;color:var(--ink2)}
+.foot{margin:20px 0 0;text-align:center;font-size:12px;color:var(--ink2)}
+.foot a{color:var(--ink);font-weight:800;text-decoration:none;border-bottom:1px solid var(--stroke)}
 .num{direction:ltr;unicode-bidi:isolate}
 
-/* ---- بطاقة التقييم ---- */
-.review{display:flex;flex-direction:column;align-items:center;gap:8px;padding:20px 16px;text-decoration:none;color:inherit;
-  border:1px solid var(--accent);border-radius:16px;background:rgba(200,169,106,.08);text-align:center}
-.review .stars{display:flex;gap:4px}
-.review .stars svg{width:19px;height:19px;color:var(--accent)}
-.review b{font-size:15.5px;font-weight:600}
-.review small{color:var(--tx2);font-size:13px}
-
-/* ---- الشريط السفلي الثابت ---- */
-.bar{position:fixed;inset-inline:0;bottom:0;z-index:40;max-width:520px;margin:0 auto;display:flex;gap:10px;
-  padding:12px 16px calc(12px + env(safe-area-inset-bottom));
-  background:rgba(14,14,15,.92);backdrop-filter:blur(14px);border-top:1px solid var(--line)}
-.bar a,.bar button{flex:1;min-height:54px;border-radius:14px;display:flex;align-items:center;justify-content:center;gap:8px;
-  font:600 15.5px/1 var(--sans);text-decoration:none;cursor:pointer;border:1px solid var(--line2);
-  background:transparent;color:var(--tx);padding:0 10px}
-.bar .primary{background:var(--accent);color:var(--accent-tx);border-color:var(--accent)}
-.bar .sq{flex:0 0 54px;min-width:54px;padding:0}
-.bar svg{width:20px;height:20px}
-
-footer{padding:28px 18px 4px;text-align:center;color:var(--tx2);font-size:12.5px}
-footer a{color:var(--tx);text-decoration:none;border-bottom:1px solid var(--accent);font-weight:600}
-
-/* ---- المعاينة الكبيرة ---- */
-.lb{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.94)}
-.lb.on{display:flex}
-.lb img{max-width:100%;max-height:100%;border-radius:14px}
-.lb .x{position:absolute;top:14px;inset-inline-end:14px;width:46px;height:46px;border-radius:50%;cursor:pointer;
-  border:1px solid var(--line2);background:rgba(0,0,0,.55);color:#fff;font-size:22px;line-height:1}
-#toast{position:fixed;bottom:calc(110px + env(safe-area-inset-bottom));inset-inline:0;margin:0 auto;width:max-content;max-width:80%;
-  background:var(--surface2);color:var(--tx);border:1px solid var(--line2);padding:11px 18px;border-radius:999px;font-size:14px;
-  opacity:0;transition:opacity .2s ease;pointer-events:none;z-index:70}
-#toast.on{opacity:1}
-@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+/* lightbox + toast */
+.lb{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;padding:18px;background:rgba(24,12,16,.93)}
+.lb[hidden]{display:none}
+.lb img{max-width:100%;max-height:88vh;border-radius:16px}
+.lbx{position:absolute;top:14px;inset-inline-end:14px;width:42px;height:42px;border-radius:50%;border:none;background:rgba(255,255,255,.16);color:#fff;font-size:18px;cursor:pointer}
+.toast{position:fixed;inset-inline:0;bottom:calc(22px + env(safe-area-inset-bottom));z-index:70;display:flex;justify-content:center;opacity:0;transition:opacity .2s ease;pointer-events:none}
+.toast.on{opacity:1}
+.toast span{background:var(--ink);color:#fff;border-radius:999px;padding:10px 18px;font-size:13px;font-weight:700}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header class="topbar">
-    <span class="mark" id="mark"></span>
-    <nav class="langs" id="langs" aria-label="Language"></nav>
-  </header>
-  <main id="app"></main>
+<main class="wrap" id="app"></main>
+
+<div class="lb" id="lb" hidden>
+  <button class="lbx" id="lbx" aria-label="close">✕</button>
+  <img id="lbi" alt="">
 </div>
-<div class="bar" id="bar"></div>
-<div class="lb" id="lb"><button class="x" id="lbx" aria-label="close">&times;</button><img id="lbi" alt=""></div>
-<div id="toast" role="status" aria-live="polite"></div>
-
-<noscript>
-  <div style="padding:24px;text-align:center">
-    <p>لتشغيل البطاقة فعّل JavaScript · Activez JavaScript · Please enable JavaScript</p>
-    <p><a href="tel:+212600000000" style="color:#C8A96A">+212 6 00 00 00 00</a></p>
-  </div>
-</noscript>
+<div class="toast" id="toast"><span id="toastMsg"></span></div>
 
 <script>
-/* ==========================================================================
-   ▼▼▼ منطقة التعديل 2 من 2 — كل معلومات العميل هنا ▼▼▼
-   قاعدة: أي قيمة تخلّيها "" أو [] يختفي قسمها تلقائياً من البطاقة.
-   ========================================================================== */
-var CARD = {
+/* =====================================================================
+   nfc4all — التصميم 6 · CARTE (بطاقة كتدور + منيو بالصور)
+   بدّل غير داخل EDIT ZONE. أي حقل خاوي "" كيختفي من البطاقة.
+   ===================================================================== */
+/* EDIT ZONE */
+const CARD = {
+  defaultLang: "ar",
+  autoDetectLang: true,
 
-  /* --- الهوية البصرية --- */
-  accent    : "#C8A96A",         // لون العميل (ذهبي / نحاسي يناسب الداكن)
-  accentText: "#101010",         // لون الكتابة داخل الزر الملوّن
-  logo      : "img/logo.jpg",    // مربعة 400×400 · أو "" ويطلع أول حرف من الاسم
-  hero      : "img/hero.jpg",    // صورة خلفية خفيفة خلف الشعار · أو ""
+  accent:  "#BE185D",
+  accent2: "#831843",
+  gold:    "#D9B471",
 
-  /* --- اللغات --- */
-  defaultLang   : "ar",          // "ar" أو "fr" أو "en"
-  autoDetectLang: true,          // true = تفتح بلغة هاتف الزائر إن كانت مدعومة
+  logo: "img/logo.jpg",
 
-  /* --- الاسم والوصف --- */
-  name   : { ar:"مقهى أطلس",           fr:"Café Atlas",             en:"Café Atlas" },
-  role   : { ar:"مقهى ومحمصة قهوة",     fr:"Café & torréfacteur",     en:"Coffee shop & roastery" },
-  tagline: { ar:"الدار البيضاء · المعاريف", fr:"Casablanca · Maârif",     en:"Casablanca · Maarif" },
-  about  : {
-    ar:"قهوة محمّصة عندنا كل أسبوع، فطور مغربي وحلويات طازجة، وركن هادئ مع وايفاي مجاني للعمل.",
-    fr:"Café torréfié chaque semaine sur place, petit-déjeuner marocain et pâtisseries fraîches, coin calme avec wifi gratuit.",
-    en:"Coffee roasted in-house every week, Moroccan breakfast and fresh pastries, plus a quiet corner with free wifi."
-  },
-  address: {
-    ar:"12 شارع الزرقطوني، المعاريف، الدار البيضاء",
-    fr:"12 Bd Zerktouni, Maârif, Casablanca",
-    en:"12 Bd Zerktouni, Maarif, Casablanca"
+  name: { ar: "حلويات الياسمين", fr: "Pâtisserie Yasmine", en: "Yasmine Pastry" },
+  role: { ar: "حلويات مغربية وكيك المناسبات", fr: "Pâtisserie marocaine & gâteaux", en: "Moroccan pastry & event cakes" },
+  city: { ar: "الرباط · حسان", fr: "Rabat · Hassan", en: "Rabat · Hassan" },
+  bio: {
+    ar: "حلويات تقليدية مصنوعة ف الدار، وكيك الأعراس بالطلب. الطلبية قبل 48 ساعة.",
+    fr: "Pâtisserie traditionnelle faite maison et gâteaux de mariage sur commande. 48h à l'avance.",
+    en: "Homemade traditional pastry and custom wedding cakes. Please order 48h ahead."
   },
 
-  /* --- الاتصال --- */
-  phone   : "+212612345678",     // رقم الاتصال
-  whatsapp: "+212612345678",     // رقم الواتساب (بالصيغة الدولية)
-  whatsappMsg: {                 // الرسالة الجاهزة التي تفتح مع الواتساب
-    ar:"السلام، بغيت نحجز طابلة في مقهى أطلس",
-    fr:"Bonjour, je souhaite réserver une table au Café Atlas",
-    en:"Hello, I would like to book a table at Café Atlas"
-  },
-  email   : "contact@cafe-atlas.ma",
+  phone:    "+212612345678",
+  whatsapp: "+212612345678",
+  email:    "commande@yasmine.ma",
+  website:  "",
 
-  /* --- الروابط (خلّي "" ما كانش عند العميل) --- */
-  facebook : "https://facebook.com/",          // صفحة الفيسبوك
-  instagram: "https://instagram.com/",         // إنستغرام
-  tiktok   : "https://tiktok.com/",            // تيك توك
-  website  : "",                               // موقع إلكتروني
-  maps     : "https://maps.google.com/?q=Maarif+Casablanca",  // موقع Google Maps
-  review   : "https://g.page/r/XXXXXXXX/review",              // رابط التقييم من Google Business
+  maps:    "https://maps.google.com/?q=Hassan+Rabat",
+  address: { ar: "شارع النخيل 12، حسان، الرباط", fr: "Av. des Palmiers 12, Hassan, Rabat", en: "12 Palm Avenue, Hassan, Rabat" },
 
-  /* --- القائمة والأسعار --- */
-  services: [
-    { name:{ ar:"قهوة إسبريسو",   fr:"Espresso",           en:"Espresso" },        price:"12 DH" },
-    { name:{ ar:"كابوتشينو",     fr:"Cappuccino",         en:"Cappuccino" },      price:"18 DH" },
-    { name:{ ar:"أتاي بالنعناع", fr:"Thé à la menthe",     en:"Mint tea" },        price:"15 DH" },
-    { name:{ ar:"فطور مغربي",    fr:"Petit-déjeuner",      en:"Moroccan breakfast" }, price:"45 DH" },
-    { name:{ ar:"حلويات اليوم",  fr:"Pâtisserie du jour",  en:"Pastry of the day" }, price:"20 DH" }
+  facebook:  "https://facebook.com/",
+  instagram: "https://instagram.com/",
+  tiktok:    "https://tiktok.com/",
+
+  review: "https://g.page/r/XXXXXXXX/review",
+
+  menu: [
+    { img: "img/m1.jpg", name: { ar: "كعب الغزال", fr: "Cornes de gazelle", en: "Gazelle horns" },
+      desc: { ar: "لوز طري وماء الزهر", fr: "Amande fraîche & fleur d'oranger", en: "Fresh almond & orange blossom" }, price: "120 DH / kg" },
+    { img: "img/m2.jpg", name: { ar: "شباكية", fr: "Chebakia", en: "Chebakia" },
+      desc: { ar: "عسل طبيعي وجلجلان", fr: "Miel naturel & sésame", en: "Natural honey & sesame" }, price: "90 DH / kg" },
+    { img: "img/m3.jpg", name: { ar: "تارت الفراولة", fr: "Tarte aux fraises", en: "Strawberry tart" },
+      desc: { ar: "كريمة طازجة · قطعة", fr: "Crème fraîche · la part", en: "Fresh cream · per slice" }, price: "45 DH" },
+    { img: "img/m4.jpg", name: { ar: "كيك الأعراس", fr: "Gâteau de mariage", en: "Wedding cake" },
+      desc: { ar: "حسب الطلب · 3 طوابق", fr: "Sur mesure · 3 étages", en: "Custom · 3 tiers" }, price: { ar: "من 600 DH", fr: "à partir de 600 DH", en: "from 600 DH" } },
+    { img: "img/m5.jpg", name: { ar: "بلاطو حلويات", fr: "Plateau assorti", en: "Assorted platter" },
+      desc: { ar: "7 أنواع · للمناسبات", fr: "7 variétés · événements", en: "7 kinds · events" }, price: "250 DH" }
   ],
 
-  /* --- أوقات العمل --- */
+  gallery: [
+    { src: "img/w1.jpg", caption: { ar: "فيترينة المحل", fr: "Notre vitrine", en: "Our display" } },
+    { src: "img/w2.jpg", caption: { ar: "طاولة حلويات للأعراس", fr: "Table de mariage", en: "Wedding sweet table" } },
+    { src: "img/w3.jpg", caption: { ar: "من المطبخ، كل صباح", fr: "En cuisine, chaque matin", en: "In the kitchen, every morning" } }
+  ],
+
   hours: [
-    { days:{ ar:"الاثنين – الجمعة", fr:"Lundi – Vendredi", en:"Mon – Fri" }, time:"07:00 – 22:00" },
-    { days:{ ar:"السبت – الأحد",   fr:"Samedi – Dimanche", en:"Sat – Sun" }, time:"08:00 – 23:00" }
+    { days: { ar: "الاثنين – السبت", fr: "Lundi – Samedi", en: "Mon – Sat" }, time: "09:00 – 21:00" },
+    { days: { ar: "الأحد", fr: "Dimanche", en: "Sunday" }, time: "10:00 – 18:00" }
   ],
-  hoursNote: {
-    ar:"التوصيل متاح من 11:00 إلى 21:00",
-    fr:"Livraison de 11h à 21h",
-    en:"Delivery from 11:00 to 21:00"
-  },
+  hoursNote: { ar: "طلبيات المناسبات: قبل 48 ساعة على الأقل.", fr: "Commandes événement : 48h minimum.", en: "Event orders: 48h minimum." },
 
-  /* --- معرض الصور (مربعة أو عمودية) --- */
-  gallery: ["img/g1.jpg", "img/g2.jpg", "img/g3.jpg"],
+  vcard: { firstName: "Yasmine", lastName: "Pastry", fullName: "Pâtisserie Yasmine", org: "Pâtisserie Yasmine", title: "Pastry shop", fileName: "yasmine-pastry" },
 
-  /* --- روابط إضافية (قائمة PDF، طلب أونلاين…) --- */
-  extraLinks: [
-    { label:{ ar:"القائمة الكاملة (PDF)", fr:"Menu complet (PDF)", en:"Full menu (PDF)" }, url:"" }
-  ],
-
-  /* --- ملف جهة الاتصال .vcf --- */
-  vcard: { firstName:"Café Atlas", lastName:"", org:"Café Atlas", title:"Coffee shop", fileName:"cafe-atlas" },
-
-  /* --- توقيعك في الأسفل --- */
-  brand: { name:"nfc4all", url:"https://wa.me/212600000000" }
+  brand: { name: "nfc4all", url: "https://wa.me/212600000000" }
 };
-/* ▲▲▲ نهاية منطقة التعديل — END OF EDIT ZONE — لا تغيّر شيءاً بعد هذا السطر ▲▲▲ */
-</script>
+/* END OF EDIT ZONE */
 
-<script>
-(function(){
-"use strict";
-
-var C = window.CARD, LANGS = ["ar","fr","en"], LAB = { ar:"ع", fr:"FR", en:"EN" };
-
-var UI = {
-  ar:{ save:"حفظ جهة الاتصال", wa:"واتساب", call:"اتصال", about:"نبذة", menu:"القائمة والأسعار",
-       work:"معرض الصور", hours:"أوقات العمل", contact:"الاتصال والموقع", links:"روابط",
-       reviewT:"قيّمنا على Google", reviewS:"دقيقة واحدة تساعدنا بزاف", share:"مشاركة البطاقة",
-       copied:"تم نسخ الرابط", dir:"الاتجاهات", addr:"العنوان", mail:"البريد الإلكتروني", web:"الموقع الإلكتروني",
-       phone:"الهاتف", fb:"فيسبوك", ig:"إنستغرام", tt:"تيك توك", by:"بطاقة رقمية من" },
-  fr:{ save:"Enregistrer le contact", wa:"WhatsApp", call:"Appeler", about:"À propos", menu:"Carte & tarifs",
-       work:"Galerie", hours:"Horaires", contact:"Contact & adresse", links:"Liens",
-       reviewT:"Laissez un avis Google", reviewS:"Une minute qui nous aide beaucoup", share:"Partager la carte",
-       copied:"Lien copié", dir:"Itinéraire", addr:"Adresse", mail:"E-mail", web:"Site web",
-       phone:"Téléphone", fb:"Facebook", ig:"Instagram", tt:"TikTok", by:"Carte numérique par" },
-  en:{ save:"Save contact", wa:"WhatsApp", call:"Call", about:"About", menu:"Menu & prices",
-       work:"Gallery", hours:"Opening hours", contact:"Contact & address", links:"Links",
-       reviewT:"Review us on Google", reviewS:"One minute helps us a lot", share:"Share card",
-       copied:"Link copied", dir:"Directions", addr:"Address", mail:"Email", web:"Website",
-       phone:"Phone", fb:"Facebook", ig:"Instagram", tt:"TikTok", by:"Digital card by" }
+const UI = {
+  ar: { save:"حفط جهة الاتصال", wa:"واتساب", share:"مشاركة", flip:"دوّر البطاقة", facebook:"فيسبوك", instagram:"إنستغرام", tiktok:"تيك توك", website:"الموقع", email:"البريد", menu:"المنيو والأثمنة", gallery:"من أعمالنا", hours:"أوقات العمل", directions:"الاتجاهات والعنوان", review:"قيّمنا على Google", reviewSub:"دقيقة واحدة كتساعدنا بزاف", reviewBtn:"أضف تقييم", by:"بطاقة رقمية من", saved:"تحمّلت جهة الاتصال ✓", copied:"تنسخ الرابط ✓" },
+  fr: { save:"Enregistrer", wa:"WhatsApp", share:"Partager", flip:"Retourner la carte", facebook:"Facebook", instagram:"Instagram", tiktok:"TikTok", website:"Site web", email:"E-mail", menu:"Menu & tarifs", gallery:"Nos réalisations", hours:"Horaires", directions:"Adresse & itinéraire", review:"Laissez un avis Google", reviewSub:"Une minute qui nous aide beaucoup", reviewBtn:"Donner mon avis", by:"Carte numérique par", saved:"Contact téléchargé ✓", copied:"Lien copié ✓" },
+  en: { save:"Save contact", wa:"WhatsApp", share:"Share", flip:"Flip the card", facebook:"Facebook", instagram:"Instagram", tiktok:"TikTok", website:"Website", email:"Email", menu:"Menu & prices", gallery:"Our work", hours:"Opening hours", directions:"Address & directions", review:"Review us on Google", reviewSub:"One minute helps us a lot", reviewBtn:"Write a review", by:"Digital card by", saved:"Contact downloaded ✓", copied:"Link copied ✓" }
 };
 
-var I = {
-  wa:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.347-.347.52-.52.174-.174.232-.298.347-.497.116-.198.058-.371-.03-.52-.086-.148-.66-1.59-.904-2.178-.24-.58-.485-.501-.67-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>',
-  fb:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 011.141.195v3.325a8.623 8.623 0 00-.653-.036 26.805 26.805 0 00-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 00-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>',
-  ig:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" stroke="none"/></svg>',
-  tt:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.6-1.62-.94-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.06Z"/></svg>',
-  phone:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.8.7a2 2 0 011.7 2Z"/></svg>',
-  pin:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1116 0Z"/><circle cx="12" cy="10" r="3"/></svg>',
-  mail:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3 7 9 6 9-6"/></svg>',
-  globe:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M2.6 12h18.8M12 2.5c2.5 2.6 3.8 6 3.8 9.5S14.5 18.9 12 21.5c-2.5-2.6-3.8-6-3.8-9.5S9.5 5.1 12 2.5Z"/></svg>',
-  clock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M12 7v5.3l3.4 2"/></svg>',
-  star:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2.6 2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.4l-5.8 3.1 1.1-6.5-4.7-4.6 6.5-.9L12 2.6Z"/></svg>',
-  user:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15.5 20v-1.8a3.6 3.6 0 00-3.6-3.6H6.6A3.6 3.6 0 003 18.2V20"/><circle cx="9.2" cy="7.4" r="3.6"/><path d="M19 8v5m2.5-2.5h-5"/></svg>',
-  share:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15.5V3m0 0L7.8 7.2M12 3l4.2 4.2"/><path d="M4.5 13.5v5A2.5 2.5 0 007 21h10a2.5 2.5 0 002.5-2.5v-5"/></svg>',
-  link:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><path d="M10.5 13.5a4 4 0 005.7 0l3-3a4 4 0 10-5.7-5.7l-1 1"/><path d="M13.5 10.5a4 4 0 00-5.7 0l-3 3a4 4 0 105.7 5.7l1-1"/></svg>',
-  ch:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>'
+const S = 'viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"';
+const F = 'viewBox="0 0 24 24" fill="currentColor"';
+const I = {
+  call:  '<svg '+S+'><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>',
+  wa:    '<svg '+F+'><path d="M12.04 2C6.6 2 2.2 6.4 2.2 11.84c0 1.74.46 3.44 1.32 4.94L2 22l5.36-1.4a9.86 9.86 0 0 0 4.68 1.2h.01c5.43 0 9.84-4.4 9.84-9.84S17.47 2 12.04 2zm5.76 13.9c-.24.68-1.4 1.3-1.93 1.35-.5.06-1.12.08-1.8-.11a13.6 13.6 0 0 1-4.9-3.05 11 11 0 0 1-2.1-3.28c-.22-.6-.02-1.5.36-2 .2-.26.42-.32.57-.32l.4.01c.13 0 .3-.05.47.36.17.42.6 1.47.65 1.58.05.1.08.24.01.38-.07.15-.32.5-.5.68-.1.1-.24.2-.1.44.15.24.66 1.07 1.42 1.74.98.86 1.66 1.1 1.9 1.22.23.12.37.1.51-.06.14-.16.6-.7.76-.94.16-.24.32-.2.53-.12.22.08 1.36.64 1.6.76.23.12.39.18.44.28.06.1.06.6-.19 1.18z"/></svg>',
+  fb:    '<svg '+F+'><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06C2 17.08 5.66 21.25 10.44 22v-7.02H7.9v-2.92h2.54V9.85c0-2.52 1.49-3.91 3.77-3.91 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.77l-.44 2.92h-2.33V22C18.34 21.25 22 17.08 22 12.06z"/></svg>',
+  ig:    '<svg '+S+'><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>',
+  tt:    '<svg '+F+'><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.1v12.4a2.59 2.59 0 1 1-1.83-2.48V9.75a5.7 5.7 0 1 0 4.93 5.65V8.9a7.35 7.35 0 0 0 4.3 1.38V7.18a4.29 4.29 0 0 1-3.24-1.36z"/></svg>',
+  globe: '<svg '+S+'><circle cx="12" cy="12" r="9.5"/><path d="M2.6 12h18.8M12 2.5c2.6 2.6 3.9 6 3.9 9.5s-1.3 6.9-3.9 9.5c-2.6-2.6-3.9-6-3.9-9.5S9.4 5.1 12 2.5z"/></svg>',
+  mail:  '<svg '+S+'><rect x="2.5" y="4.5" width="19" height="15" rx="3"/><path d="m3.5 7 7.6 5.3a2 2 0 0 0 2.3 0L21 7"/></svg>',
+  pin:   '<svg '+S+'><path d="M20 10.5c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0z"/><circle cx="12" cy="10.3" r="3"/></svg>',
+  star:  '<svg '+F+'><path d="m12 2.6 2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.4 6.2 20.5l1.1-6.5L2.6 9.4l6.5-.9L12 2.6z"/></svg>',
+  user:  '<svg '+S+'><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>',
+  share: '<svg '+S+'><path d="M12 16V3.5m0 0L7.8 7.7M12 3.5l4.2 4.2M4.5 14v4.5a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V14"/></svg>',
+  flip:  '<svg '+S+'><path d="M3 12a9 9 0 0 1 15.3-6.4M21 4.5V9h-4.5M21 12a9 9 0 0 1-15.3 6.4M3 19.5V15h4.5"/></svg>'
 };
 
-var lang = pickLang();
+const LANGS = ["ar", "fr", "en"];
+const root = document.documentElement;
+const PARAMS = new URLSearchParams(location.search);
 
 function pickLang(){
-  var q = (location.search.match(/[?&]lang=(ar|fr|en)/i) || [])[1];   // رابط مباشر بلغة: …/?lang=fr
-  if(q) return q.toLowerCase();
-  try{ var s = localStorage.getItem("nfc4all-lang"); if(s && UI[s]) return s; }catch(e){}
-  if(C.autoDetectLang !== false){
-    var n = (navigator.language || "").slice(0,2).toLowerCase();
-    if(UI[n]) return n;
+  const q = PARAMS.get("lang");
+  if (q && LANGS.indexOf(q) > -1) return q;
+  try { const s = localStorage.getItem("nfc4all-lang"); if (s && LANGS.indexOf(s) > -1) return s; } catch(err) {}
+  if (CARD.autoDetectLang !== false) {
+    const n = (navigator.language || "").slice(0,2).toLowerCase();
+    if (LANGS.indexOf(n) > -1) return n;
   }
-  return UI[C.defaultLang] ? C.defaultLang : "ar";
+  return LANGS.indexOf(CARD.defaultLang) > -1 ? CARD.defaultLang : "ar";
 }
-function t(v){ if(!v) return ""; return typeof v === "string" ? v : (v[lang] || v.ar || v.fr || v.en || ""); }
-function e(s){ return String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
-function digits(p){ return String(p || "").replace(/[^0-9]/g,""); }
+let LANG = pickLang();
 
-function row(href, icon, label, value, ext, num){
-  var tag = href ? "a" : "div", at = href ? ' href="' + e(href) + '"' + (ext ? ' target="_blank" rel="noopener"' : "") : "",
-      nc = num ? " num" : "";
-  return "<" + tag + ' class="row"' + at + '><span class="ic">' + icon + '</span><span class="tx">' + e(label) +
-    (value && href ? '<small class="' + (num ? "num" : "") + '">' + e(value) + "</small>" : "") + "</span>" +
-    (value && !href ? '<span class="val' + nc + '">' + e(value) + "</span>" : "") +
-    (href ? '<span class="ch">' + I.ch + "</span>" : "") + "</" + tag + ">";
+function t(v){
+  if (v === null || v === undefined) return "";
+  if (typeof v === "object") return v[LANG] || v.ar || v.fr || v.en || "";
+  return String(v);
 }
-function head(txt){ return '<div class="sh"><span>' + e(txt) + '</span><i></i></div>'; }
+function e(s){
+  return String(s === null || s === undefined ? "" : s)
+    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+function nc(v){
+  return (/[0-9]/.test(v) && !/[\u0600-\u06FF]/.test(v)) ? " num" : "";
+}
+function digits(v){ return String(v || "").replace(/[^0-9]/g, ""); }
 
 function render(){
-  var L = UI[lang], waHref = "", i;
-  document.documentElement.lang = lang;
-  document.documentElement.dir  = (lang === "ar") ? "rtl" : "ltr";
-  document.getElementById("mark").textContent = t(C.name);
+  const c = CARD, u = UI[LANG];
+  root.lang = LANG;
+  root.dir = (LANG === "ar") ? "rtl" : "ltr";
+  document.getElementById("ttl").textContent = t(c.name) + (c.role ? " — " + t(c.role) : "");
+  if (c.accent)  root.style.setProperty("--accent", c.accent);
+  if (c.accent2) root.style.setProperty("--accent2", c.accent2);
+  if (c.gold)    root.style.setProperty("--gold", c.gold);
 
-  if(C.whatsapp) waHref = "https://wa.me/" + digits(C.whatsapp) + (t(C.whatsappMsg) ? "?text=" + encodeURIComponent(t(C.whatsappMsg)) : "");
+  const p = [];
 
-  /* --- اللغات --- */
-  var lg = "";
-  for(i = 0; i < LANGS.length; i++){
-    lg += '<button type="button" data-l="' + LANGS[i] + '" aria-pressed="' + (LANGS[i] === lang) + '" lang="' + LANGS[i] + '">' + LAB[LANGS[i]] + "</button>";
+  p.push('<div class="langbar">' + LANGS.map(function(l){
+    return '<button class="lg' + (l === LANG ? ' on' : '') + '" data-lang="' + l + '">' + (l === "ar" ? "ع" : l.toUpperCase()) + '</button>';
+  }).join("") + '</div>');
+
+  /* 1 · the flip card */
+  const bl = [];
+  if (c.phone)   bl.push('<li>' + I.call + '<span class="num">' + e(c.phone) + '</span></li>');
+  if (c.email)   bl.push('<li>' + I.mail + '<span>' + e(c.email) + '</span></li>');
+  if (c.address) bl.push('<li>' + I.pin + '<span>' + e(t(c.address)) + '</span></li>');
+  const bs = [];
+  if (c.facebook)  bs.push('<a class="fb" target="_blank" rel="noopener" href="' + e(c.facebook) + '" aria-label="Facebook">' + I.fb + '</a>');
+  if (c.instagram) bs.push('<a class="ig" target="_blank" rel="noopener" href="' + e(c.instagram) + '" aria-label="Instagram">' + I.ig + '</a>');
+  if (c.tiktok)    bs.push('<a class="tt" target="_blank" rel="noopener" href="' + e(c.tiktok) + '" aria-label="TikTok">' + I.tt + '</a>');
+
+  p.push('<div class="cardwrap">' +
+    '<div class="flip' + (PARAMS.get("flip") === "1" ? ' on' : '') + '" id="flip" role="button" tabindex="0">' +
+      '<div class="face front">' +
+        '<div>' +
+          '<div class="fh">' +
+            (c.logo ? '<img class="mk" src="' + e(c.logo) + '" alt="">' : '') +
+            '<div><h1>' + e(t(c.name)) + '</h1>' + (c.role ? '<p>' + e(t(c.role)) + '</p>' : '') + '</div>' +
+          '</div>' +
+          '<div class="gl"></div>' +
+        '</div>' +
+        '<div class="fb2">' +
+          (c.phone ? '<span class="ph num">' + e(c.phone) + '</span>' : '<span></span>') +
+          (c.city ? '<span class="ct">' + e(t(c.city)) + '</span>' : '') +
+        '</div>' +
+      '</div>' +
+      '<div class="face back">' +
+        (c.bio ? '<p class="bt">' + e(t(c.bio)) + '</p>' : '') +
+        (bl.length ? '<ul class="bl">' + bl.join("") + '</ul>' : '') +
+        (bs.length ? '<div class="bs">' + bs.join("") + '</div>' : '') +
+      '</div>' +
+    '</div>' +
+  '</div>');
+  p.push('<button class="hint" id="hint">' + I.flip + '<span>' + u.flip + '</span></button>');
+
+  /* 2 · CTA */
+  p.push('<div class="cta">' +
+    '<button class="b p" id="save">' + I.user + '<span>' + u.save + '</span></button>' +
+    (c.whatsapp
+      ? '<a class="b w" target="_blank" rel="noopener" href="https://wa.me/' + digits(c.whatsapp) + '">' + I.wa + '<span>' + u.wa + '</span></a>'
+      : '<button class="b s" id="share2">' + I.share + '<span>' + u.share + '</span></button>') +
+  '</div>');
+
+  /* 3 · chips */
+  const ch = [];
+  if (c.facebook)  ch.push('<a class="chip fb" target="_blank" rel="noopener" href="' + e(c.facebook) + '">' + I.fb + '<span>' + u.facebook + '</span></a>');
+  if (c.instagram) ch.push('<a class="chip ig" target="_blank" rel="noopener" href="' + e(c.instagram) + '">' + I.ig + '<span>' + u.instagram + '</span></a>');
+  if (c.tiktok)    ch.push('<a class="chip tt" target="_blank" rel="noopener" href="' + e(c.tiktok) + '">' + I.tt + '<span>' + u.tiktok + '</span></a>');
+  if (c.website)   ch.push('<a class="chip web" target="_blank" rel="noopener" href="' + e(c.website) + '">' + I.globe + '<span>' + u.website + '</span></a>');
+  if (c.email)     ch.push('<a class="chip mail" href="mailto:' + e(c.email) + '">' + I.mail + '<span>' + u.email + '</span></a>');
+  ch.push('<button class="chip" id="share">' + I.share + '<span>' + u.share + '</span></button>');
+  p.push('<div class="chips">' + ch.join("") + '</div>');
+
+  /* 4 · menu with photos */
+  if (c.menu && c.menu.length) p.push('<section class="sec">' +
+    '<div class="sh"><h2>' + u.menu + '</h2><i></i></div>' +
+    '<div class="panel" id="menu">' + c.menu.map(function(m){
+      return '<a class="mr"' + (m.img ? ' href="' + e(m.img) + '"' : '') + '>' +
+        (m.img ? '<img src="' + e(m.img) + '" alt="" loading="lazy">' : '') +
+        '<span class="mb"><span class="mn">' + e(t(m.name)) + '</span>' +
+        (m.desc ? '<span class="md">' + e(t(m.desc)) + '</span>' : '') + '</span>' +
+        (m.price ? '<span class="mp' + nc(t(m.price)) + '">' + e(t(m.price)) + '</span>' : '') +
+      '</a>';
+    }).join("") + '</div></section>');
+
+  /* 5 · wide gallery */
+  if (c.gallery && c.gallery.length) p.push('<section class="sec">' +
+    '<div class="sh"><h2>' + u.gallery + '</h2><i></i></div>' +
+    '<div class="wide" id="wide">' + c.gallery.map(function(g){
+      const src = (typeof g === "string") ? g : g.src;
+      const cap = (typeof g === "string") ? "" : t(g.caption);
+      return '<a class="wi" href="' + e(src) + '"><img src="' + e(src) + '" alt="" loading="lazy">' +
+        (cap ? '<span>' + e(cap) + '</span>' : '') + '</a>';
+    }).join("") + '</div></section>');
+
+  /* 6 · hours */
+  if (c.hours && c.hours.length) p.push('<section class="sec">' +
+    '<div class="sh"><h2>' + u.hours + '</h2><i></i></div>' +
+    '<div class="panel"><div class="hrsg">' + c.hours.map(function(h){
+      return '<span class="d">' + e(t(h.days)) + '</span><span class="v' + nc(t(h.time)) + '">' + e(t(h.time)) + '</span>';
+    }).join("") + '</div>' +
+    (c.hoursNote ? '<p class="note">' + e(t(c.hoursNote)) + '</p>' : '') + '</div></section>');
+
+  /* 7 · location */
+  if (c.maps || c.address) {
+    const inner = '<span class="ic">' + I.pin + '</span><span><span class="lt">' + u.directions + '</span>' +
+      (c.address ? '<span class="lv">' + e(t(c.address)) + '</span>' : '') + '</span>';
+    p.push('<section class="sec">' + (c.maps
+      ? '<a class="panel loc" target="_blank" rel="noopener" href="' + e(c.maps) + '">' + inner + '</a>'
+      : '<div class="panel loc">' + inner + '</div>') + '</section>');
   }
-  document.getElementById("langs").innerHTML = lg;
 
-  /* --- الواجهة --- */
-  var h = '<div class="hero">' +
-    (C.hero ? '<div class="hero-bg" style="background-image:url(' + e(C.hero) + ')"></div>' : "") +
-    '<div class="hero-sc"></div><div class="hero-in">' +
-    (C.logo ? '<img class="logo" src="' + e(C.logo) + '" alt="' + e(t(C.name)) + '">'
-            : '<div class="logo mono">' + e(t(C.name).charAt(0)) + "</div>") +
-    "<h1>" + e(t(C.name)) + "</h1>" +
-    (t(C.role) ? '<p class="role">' + e(t(C.role)) + "</p>" : "") +
-    '<div class="rule"></div>' +
-    (t(C.tagline) ? '<p class="tag">' + e(t(C.tagline)) + "</p>" : "") +
-    "</div></div>";
+  /* 8 · review */
+  if (c.review) p.push('<section class="rev">' +
+    '<div class="stars">' + I.star + I.star + I.star + I.star + I.star + '</div>' +
+    '<h3>' + u.review + '</h3><p>' + u.reviewSub + '</p>' +
+    '<a class="b p" target="_blank" rel="noopener" href="' + e(c.review) + '">' + I.star + '<span>' + u.reviewBtn + '</span></a>' +
+  '</section>');
 
-  /* --- أيقونات التواصل --- */
-  var soc = [
-    [waHref,      I.wa,    L.wa,    "var(--wa)"],
-    [C.facebook,  I.fb,    L.fb,    "var(--fb)"],
-    [C.instagram, I.ig,    L.ig,    "var(--ig)"],
-    [C.tiktok,    I.tt,    L.tt,    "var(--tt)"],
-    [C.maps,      I.pin,   L.dir,   "var(--accent)"],
-    [C.website,   I.globe, L.web,   "var(--accent)"]
-  ], sc = "";
-  for(i = 0; i < soc.length; i++){
-    if(!soc[i][0]) continue;
-    sc += '<a href="' + e(soc[i][0]) + '" target="_blank" rel="noopener" aria-label="' + e(soc[i][2]) +
-          '" title="' + e(soc[i][2]) + '" style="color:' + soc[i][3] + '">' + soc[i][1] + "</a>";
-  }
-  if(sc) h += '<div class="socials">' + sc + "</div>";
+  if (c.brand && c.brand.name) p.push('<p class="foot">' + u.by + ' <a href="' + e(c.brand.url || "#") + '" target="_blank" rel="noopener">' + e(c.brand.name) + '</a></p>');
 
-  /* --- نبذة --- */
-  if(t(C.about)) h += "<section>" + head(L.about) + '<p class="about">' + e(t(C.about)) + "</p></section>";
-
-  /* --- القائمة والأسعار --- */
-  if(C.services && C.services.length){
-    var mn = "";
-    for(i = 0; i < C.services.length; i++){
-      mn += '<li><span class="nm">' + e(t(C.services[i].name)) + '</span><span class="dots"></span>' +
-            '<span class="pr num">' + e(C.services[i].price) + "</span></li>";
-    }
-    h += "<section>" + head(L.menu) + '<ul class="menu">' + mn + "</ul></section>";
-  }
-
-  /* --- المعرض --- */
-  if(C.gallery && C.gallery.length){
-    var g = "";
-    for(i = 0; i < C.gallery.length; i++){
-      g += '<button type="button" data-img="' + e(C.gallery[i]) + '"><img src="' + e(C.gallery[i]) +
-           '" alt="" loading="lazy"></button>';
-    }
-    h += "<section>" + head(L.work) + '<div class="gal">' + g + "</div></section>";
-  }
-
-  /* --- أوقات العمل --- */
-  if(C.hours && C.hours.length){
-    var hr = "";
-    for(i = 0; i < C.hours.length; i++){
-      hr += row("", I.clock, t(C.hours[i].days), C.hours[i].time, false, true);
-    }
-    h += "<section>" + head(L.hours) + '<div class="rows">' + hr + "</div>" +
-         (t(C.hoursNote) ? '<p class="note">' + e(t(C.hoursNote)) + "</p>" : "") + "</section>";
-  }
-
-  /* --- الاتصال والموقع --- */
-  var cr = "";
-  if(C.phone)      cr += row("tel:" + C.phone, I.phone, L.phone, C.phone, false, true);
-  if(C.maps)       cr += row(C.maps, I.pin, L.dir, t(C.address), true);
-  else if(t(C.address)) cr += row("", I.pin, L.addr, t(C.address), false);
-  if(C.email)      cr += row("mailto:" + C.email, I.mail, L.mail, C.email, false, true);
-  if(C.website)    cr += row(C.website, I.globe, L.web, C.website.replace(/^https?:\/\//,""), true, true);
-  if(cr) h += "<section>" + head(L.contact) + '<div class="rows">' + cr + "</div></section>";
-
-  /* --- روابط إضافية --- */
-  if(C.extraLinks && C.extraLinks.length){
-    var xl = "";
-    for(i = 0; i < C.extraLinks.length; i++){
-      if(!C.extraLinks[i].url) continue;
-      xl += row(C.extraLinks[i].url, I.link, t(C.extraLinks[i].label), "", true);
-    }
-    if(xl) h += "<section>" + head(L.links) + '<div class="rows">' + xl + "</div></section>";
-  }
-
-  /* --- التقييم --- */
-  if(C.review){
-    h += '<section><a class="review" href="' + e(C.review) + '" target="_blank" rel="noopener">' +
-         '<span class="stars">' + I.star + I.star + I.star + I.star + I.star + "</span>" +
-         "<b>" + e(L.reviewT) + "</b><small>" + e(L.reviewS) + "</small></a></section>";
-  }
-
-  /* --- التوقيع --- */
-  h += "<footer>" + e(L.by) + " " +
-       (C.brand && C.brand.url
-         ? '<a href="' + e(C.brand.url) + '" target="_blank" rel="noopener">' + e(C.brand.name) + "</a>"
-         : "<b>" + e(C.brand ? C.brand.name : "") + "</b>") + "</footer>";
-
-  document.getElementById("app").innerHTML = h;
-
-  /* --- الشريط السفلي الثابت --- */
-  var b = '<button type="button" class="primary" id="vcf">' + I.user + "<span>" + e(L.save) + "</span></button>";
-  if(waHref) b += '<a href="' + e(waHref) + '" target="_blank" rel="noopener" style="color:var(--wa)">' + I.wa + "</a>";
-  else if(C.phone) b += '<a href="tel:' + e(C.phone) + '">' + I.phone + "<span>" + e(L.call) + "</span></a>";
-  b += '<button type="button" class="sq" id="shr" aria-label="' + e(L.share) + '" title="' + e(L.share) + '">' + I.share + "</button>";
-  document.getElementById("bar").innerHTML = b;
-
-  document.getElementById("vcf").onclick = saveContact;
-  document.getElementById("shr").onclick = shareCard;
+  document.getElementById("app").innerHTML = p.join("");
+  wire();
 }
 
-/* ---- ملف جهة الاتصال ---- */
-function vcard(){
-  var v = C.vcard || {}, nm = t(C.name),
-      full = (v.firstName ? ((v.firstName + " " + (v.lastName || "")).trim()) : nm),
-      out = ["BEGIN:VCARD", "VERSION:3.0",
-             "N:" + (v.lastName || "") + ";" + (v.firstName || nm) + ";;;",
-             "FN:" + full];
-  if(v.org)   out.push("ORG:" + v.org);
-  if(v.title) out.push("TITLE:" + v.title);
-  if(C.phone) out.push("TEL;TYPE=CELL:" + C.phone);
-  if(C.whatsapp && digits(C.whatsapp) !== digits(C.phone)) out.push("TEL;TYPE=WORK:" + C.whatsapp);
-  if(C.email) out.push("EMAIL;TYPE=INTERNET:" + C.email);
-  if(t(C.address)) out.push("ADR;TYPE=WORK:;;" + t(C.address).replace(/,/g, "\\,") + ";;;;");
-  out.push("URL:" + (C.website || location.href));
-  if(t(C.role)) out.push("NOTE:" + t(C.role));
-  out.push("END:VCARD");
-  return out.join("\r\n");
+function wire(){
+  Array.prototype.forEach.call(document.querySelectorAll(".lg"), function(b){
+    b.addEventListener("click", function(){
+      LANG = b.getAttribute("data-lang");
+      try { localStorage.setItem("nfc4all-lang", LANG); } catch(err) {}
+      render();
+    });
+  });
+
+  const flip = document.getElementById("flip");
+  const hint = document.getElementById("hint");
+  function doFlip(){ if (flip) flip.classList.toggle("on"); }
+  if (flip) {
+    flip.addEventListener("click", function(ev){
+      if (ev.target.closest("a")) return;
+      doFlip();
+    });
+    flip.addEventListener("keydown", function(ev){
+      if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); doFlip(); }
+    });
+  }
+  if (hint) hint.addEventListener("click", doFlip);
+
+  const sv = document.getElementById("save");
+  if (sv) sv.addEventListener("click", saveContact);
+  const sh = document.getElementById("share");
+  if (sh) sh.addEventListener("click", shareCard);
+  const sh2 = document.getElementById("share2");
+  if (sh2) sh2.addEventListener("click", shareCard);
+
+  ["menu", "wide"].forEach(function(id){
+    const box = document.getElementById(id);
+    if (!box) return;
+    box.addEventListener("click", function(ev){
+      const a = ev.target.closest("a");
+      if (!a || !a.getAttribute("href")) return;
+      ev.preventDefault();
+      document.getElementById("lbi").src = a.getAttribute("href");
+      document.getElementById("lb").hidden = false;
+    });
+  });
 }
+
+function closeLb(){ document.getElementById("lb").hidden = true; }
+document.getElementById("lbx").addEventListener("click", closeLb);
+document.getElementById("lb").addEventListener("click", function(ev){ if (ev.target.id === "lb") closeLb(); });
+document.addEventListener("keydown", function(ev){ if (ev.key === "Escape") closeLb(); });
+
+function vcardText(){
+  const c = CARD, v = c.vcard || {}, L = [];
+  L.push("BEGIN:VCARD", "VERSION:3.0");
+  L.push("N:" + (v.lastName || "") + ";" + (v.firstName || "") + ";;;");
+  L.push("FN:" + (v.fullName || t(c.name)));
+  if (v.org)   L.push("ORG:" + v.org);
+  if (v.title) L.push("TITLE:" + v.title);
+  if (c.phone)    L.push("TEL;TYPE=CELL:" + c.phone);
+  if (c.whatsapp && c.whatsapp !== c.phone) L.push("TEL;TYPE=WORK:" + c.whatsapp);
+  if (c.email)   L.push("EMAIL;TYPE=INTERNET:" + c.email);
+  if (c.website) L.push("URL:" + c.website);
+  if (c.address) L.push("ADR;TYPE=WORK:;;" + t(c.address) + ";;;;");
+  if (c.facebook)  L.push("X-SOCIALPROFILE;TYPE=facebook:" + c.facebook);
+  if (c.instagram) L.push("X-SOCIALPROFILE;TYPE=instagram:" + c.instagram);
+  if (c.tiktok)    L.push("X-SOCIALPROFILE;TYPE=tiktok:" + c.tiktok);
+  L.push("NOTE:" + t(c.role));
+  L.push("END:VCARD");
+  return L.join("\r\n");
+}
+
 function saveContact(){
-  try{
-    var blob = new Blob([vcard()], { type:"text/vcard;charset=utf-8" }),
-        url  = URL.createObjectURL(blob),
-        a    = document.createElement("a");
-    a.href = url; a.download = ((C.vcard && C.vcard.fileName) || "contact") + ".vcf";
-    document.body.appendChild(a); a.click(); a.parentNode.removeChild(a);
-    setTimeout(function(){ URL.revokeObjectURL(url); }, 4000);
-  }catch(err){ if(C.phone) location.href = "tel:" + C.phone; }
+  try {
+    const blob = new Blob([vcardText()], { type: "text/vcard;charset=utf-8" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = ((CARD.vcard && CARD.vcard.fileName) || "contact") + ".vcf";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 4000);
+    toast(UI[LANG].saved);
+  } catch(err) { toast(UI[LANG].saved); }
 }
 
-/* ---- مشاركة ---- */
 function shareCard(){
-  var data = { title:t(C.name), text:t(C.role), url:location.href };
-  if(navigator.share){ navigator.share(data).catch(function(){}); return; }
-  var done = function(){ toast(UI[lang].copied); };
-  if(navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(location.href).then(done, done);
-  else done();
-}
-var tmr;
-function toast(msg){
-  var el = document.getElementById("toast");
-  el.textContent = msg; el.classList.add("on");
-  clearTimeout(tmr); tmr = setTimeout(function(){ el.classList.remove("on"); }, 2200);
-}
-
-/* ---- المعاينة الكبيرة ---- */
-var lb = document.getElementById("lb"), lbi = document.getElementById("lbi");
-function closeLb(){ lb.classList.remove("on"); lbi.removeAttribute("src"); }
-document.getElementById("lbx").onclick = closeLb;
-lb.addEventListener("click", function(ev){ if(ev.target === lb) closeLb(); });
-document.addEventListener("keydown", function(ev){ if(ev.key === "Escape") closeLb(); });
-
-/* ---- الأحداث ---- */
-document.addEventListener("click", function(ev){
-  var g = ev.target.closest ? ev.target.closest("[data-img]") : null;
-  if(g){ lbi.src = g.getAttribute("data-img"); lb.classList.add("on"); return; }
-  var b = ev.target.closest ? ev.target.closest("[data-l]") : null;
-  if(b){
-    lang = b.getAttribute("data-l");
-    try{ localStorage.setItem("nfc4all-lang", lang); }catch(err){}
-    render();
-    window.scrollTo({ top:0, behavior:"smooth" });
+  const data = { title: t(CARD.name), text: t(CARD.role), url: location.href };
+  if (navigator.share) { navigator.share(data).catch(function(){}); return; }
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(location.href).then(function(){ toast(UI[LANG].copied); }).catch(function(){});
   }
-});
+}
 
-/* ---- الإقلاع ---- */
-if(C.accent)     document.documentElement.style.setProperty("--accent", C.accent);
-if(C.accentText) document.documentElement.style.setProperty("--accent-tx", C.accentText);
+let toastTimer = null;
+function toast(msg){
+  const box = document.getElementById("toast");
+  document.getElementById("toastMsg").textContent = msg;
+  box.classList.add("on");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ box.classList.remove("on"); }, 2400);
+}
+
 render();
-})();
 </script>
 </body>
 </html>
