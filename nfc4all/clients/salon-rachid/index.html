@@ -378,29 +378,45 @@ function bind(){
   document.getElementById("shr").addEventListener("click", shareCard);
 }
 
-/* --- حفظ جهة الاتصال (ملف vCard) --- */
+/* --- حفظ جهة الاتصال (ملف vCard) -- تم تعديله لتحسين التوافق --- */
 function saveContact(){
   var v = C.vcard || {}, fn = t(C.name);
-  var L = ["BEGIN:VCARD","VERSION:3.0"];
-  L.push("N:"+(v.lastName||fn)+";"+(v.firstName||"")+";;;");
-  L.push("FN:"+((v.firstName?v.firstName+" ":"")+(v.lastName||fn)).trim());
-  if(v.org)   L.push("ORG:"+v.org);
-  if(v.title) L.push("TITLE:"+v.title);
-  if(C.phone){ L.push("TEL;TYPE=CELL,VOICE:"+C.phone); L.push("TEL;TYPE=WORK,VOICE:"+C.phone); }
-  if(C.email)     L.push("EMAIL;TYPE=INTERNET:"+C.email);
-  if(C.website)   L.push("URL:"+C.website);
-  if(C.instagram) L.push("X-SOCIALPROFILE;TYPE=instagram:"+C.instagram);
-  if(C.facebook)  L.push("X-SOCIALPROFILE;TYPE=facebook:"+C.facebook);
-  if(C.tiktok)    L.push("X-SOCIALPROFILE;TYPE=tiktok:"+C.tiktok);
-  if(v.city||v.country) L.push("ADR;TYPE=WORK:;;"+(t(C.address)||"")+";"+(v.city||"")+";;;"+(v.country||""));
-  L.push("URL;TYPE=card:"+location.href);
-  L.push("NOTE:"+t(C.role));
-  L.push("END:VCARD");
-  var blob = new Blob(["\ufeff"+L.join("\r\n")], {type:"text/vcard;charset=utf-8"});
+  var lines = [];
+  lines.push("BEGIN:VCARD");
+  lines.push("VERSION:3.0");
+  // الاسم: N:last;first;;;
+  var lastName = v.lastName || fn;
+  var firstName = v.firstName || "";
+  lines.push("N:" + lastName + ";" + firstName + ";;;");
+  // الاسم الكامل
+  var fullName = (firstName ? firstName + " " : "") + lastName;
+  lines.push("FN:" + fullName);
+  if (v.org) lines.push("ORG:" + v.org);
+  if (v.title) lines.push("TITLE:" + v.title);
+  // رقم الهاتف (سطر واحد فقط لتجنب التعارض)
+  if (C.phone) lines.push("TEL;TYPE=CELL:" + C.phone);
+  if (C.email) lines.push("EMAIL;TYPE=INTERNET:" + C.email);
+  if (C.website) lines.push("URL:" + C.website);
+  // العنوان
+  var addr = t(C.address) || "";
+  var city = v.city || "";
+  var country = v.country || "";
+  if (addr || city || country) {
+    lines.push("ADR;TYPE=WORK:;;" + addr + ";" + city + ";;;" + country);
+  }
+  // رابط البطاقة
+  lines.push("URL;TYPE=card:" + location.href);
+  // ملاحظة
+  lines.push("NOTE:" + t(C.role));
+  lines.push("END:VCARD");
+
+  // إنشاء الملف بدون BOM (لتوافق أفضل)
+  var blob = new Blob([lines.join("\r\n")], { type: "text/vcard;charset=utf-8" });
   var a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
-  a.download = ((v.org||fn).replace(/[^\w\u0600-\u06FF -]/g,"") || "contact") + ".vcf";
-  document.body.appendChild(a); a.click();
+  a.download = (fullName.replace(/[^\w\u0600-\u06FF -]/g, "") || "contact") + ".vcf";
+  document.body.appendChild(a);
+  a.click();
   setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 1200);
 }
 
