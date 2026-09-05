@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#831843">
+<meta name="color-scheme" content="light">
+<title id="ttl">Patisserie</title>
+<style>
+:root{--ink:#231A1D;--ink2:#7A6B70;--canvas:#F6F1F0;--surface:#FFFFFF;--stroke:#EADFE1;--accent:#BE185D;--accent2:#831843;--gold:#D9B471;--wa:#16A34A;--fb:#2563EB;--ig:#DD2A7B;--tt:#141414;--star:#F59E0B;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans Arabic","Helvetica Neue",Arial,sans-serif;--serif:Georgia,"Times New Roman","Noto Sans Arabic",serif}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--canvas);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+.wrap{max-width:430px;margin:0 auto;padding:16px 16px calc(30px + env(safe-area-inset-bottom))}
+.langbar{display:flex;justify-content:flex-end;gap:6px;margin-bottom:14px}
+.lg{width:44px;height:33px;border-radius:10px;border:1px solid var(--stroke);background:var(--surface);color:var(--ink2);font:700 13px/1 var(--sans);cursor:pointer}
+.lg.on{background:var(--accent2);color:#fff;border-color:var(--accent2)}
+
+/* flip business card */
+.cardwrap{perspective:1200px}
+.flip{position:relative;width:100%;aspect-ratio:1.72/1;transform-style:preserve-3d;transition:transform .65s cubic-bezier(.4,.1,.2,1);cursor:pointer}
+.flip.on{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;border-radius:18px;padding:15px 16px;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;box-shadow:0 18px 38px -22px rgba(35,26,29,.7)}
+.front{background:linear-gradient(135deg,#9F1239 0%,var(--accent2) 58%,#4C0519 100%);color:#fff;display:flex;flex-direction:column;justify-content:space-between}
+.front::after{content:"";position:absolute;inset-inline-end:-40px;top:-50px;width:170px;height:170px;border-radius:50%;background:radial-gradient(circle,rgba(217,180,113,.35),transparent 68%)}
+.fh{display:flex;align-items:center;gap:11px;position:relative;z-index:2}
+.mk{width:52px;height:52px;border-radius:13px;object-fit:cover;border:1.5px solid rgba(217,180,113,.85);flex:0 0 auto}
+.fh h1{margin:0;font-family:var(--serif);font-size:19px;line-height:1.2}
+.fh p{margin:3px 0 0;font-size:11.5px;color:rgba(255,255,255,.8);line-height:1.35}
+.gl{height:2px;border-radius:2px;background:linear-gradient(90deg,var(--gold),rgba(217,180,113,0));margin:10px 0;position:relative;z-index:2}
+.fb2{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;position:relative;z-index:2}
+.fb2 .ph{font-size:14px;font-weight:800}
+.fb2 .ct{font-size:11.5px;color:rgba(255,255,255,.78);text-align:end}
+.back{background:var(--surface);border:1px solid var(--stroke);transform:rotateY(180deg);display:flex;flex-direction:column;justify-content:space-between}
+.bt{margin:0;font-size:12.5px;line-height:1.6;color:var(--ink2)}
+.bl{list-style:none;margin:8px 0 0;padding:0}
+.bl li{display:flex;align-items:center;gap:8px;font-size:12.5px;padding:2px 0}
+.bl svg{width:14px;height:14px;color:var(--accent);flex:0 0 auto}
+.bs{display:flex;gap:8px;margin-top:8px}
+.bs a{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;color:#fff}
+.bs svg{width:15px;height:15px}
+.bs .fb{background:var(--fb)}
+.bs .ig{background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF)}
+.bs .tt{background:var(--tt)}
+.hint{margin:12px auto 0;background:none;border:none;color:var(--ink2);font:600 12px/1 var(--sans);cursor:pointer;display:flex;align-items:center;gap:6px}
+.hint svg{width:13px;height:13px}
+
+/* CTA + chips */
+.cta{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:16px}
+.b{display:flex;align-items:center;justify-content:center;gap:7px;height:50px;border-radius:14px;border:1px solid transparent;font:800 14px/1 var(--sans);cursor:pointer;text-decoration:none}
+.b svg{width:17px;height:17px;flex:0 0 auto}
+.b.p{background:var(--accent2);color:#fff}
+.b.s{background:var(--surface);color:var(--ink);border-color:var(--stroke)}
+.b.w{background:var(--wa);color:#fff}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chip{display:inline-flex;align-items:center;gap:7px;padding:9px 13px;border-radius:999px;background:var(--surface);border:1px solid var(--stroke);text-decoration:none;color:var(--ink);font:700 12.5px/1 var(--sans);cursor:pointer}
+.chip svg{width:15px;height:15px;flex:0 0 auto}
+.chip.fb svg{color:var(--fb)}
+.chip.ig svg{color:var(--ig)}
+.chip.tt svg{color:var(--tt)}
+.chip.web svg{color:var(--accent)}
+.chip.mail svg{color:#0EA5E9}
+
+/* sections */
+.sec{margin-top:26px}
+.sh{margin:0 0 12px}
+.sh h2{margin:0;font-size:12px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--ink2)}
+.sh i{display:block;width:26px;height:3px;border-radius:3px;background:var(--gold);margin-top:6px}
+.panel{background:var(--surface);border:1px solid var(--stroke);border-radius:18px;padding:13px 14px}
+
+/* menu rows with photos */
+.mr{display:flex;align-items:center;gap:12px;padding:11px 0;border-top:1px solid var(--stroke);text-decoration:none;color:inherit}
+.mr:first-child{border-top:none}
+.mr img{width:60px;height:60px;border-radius:14px;object-fit:cover;flex:0 0 auto;background:var(--canvas)}
+.mb{flex:1;min-width:0;display:block}
+.mn{display:block;font-size:14.5px;font-weight:700}
+.md{display:block;font-size:12px;color:var(--ink2);margin-top:2px;line-height:1.45}
+.mp{font-size:13px;font-weight:800;color:var(--accent);white-space:nowrap}
+
+/* wide stacked gallery */
+.wide{display:flex;flex-direction:column;gap:10px}
+.wi{position:relative;display:block;border-radius:18px;overflow:hidden}
+.wi img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+.wi::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,10,14,.55),transparent 58%)}
+.wi span{position:absolute;inset-inline-start:14px;bottom:11px;z-index:2;color:#fff;font-size:12.5px;font-weight:800;text-shadow:0 1px 8px rgba(0,0,0,.55)}
+
+/* hours + location + review */
+.hrsg{display:grid;grid-template-columns:auto 1fr;gap:7px 14px;font-size:13px;align-items:baseline}
+.hrsg .d{color:var(--ink2)}
+.hrsg .v{font-weight:800;text-align:end}
+.note{margin:10px 0 0;font-size:11.5px;color:var(--ink2);line-height:1.5}
+.loc{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
+.loc .ic{width:42px;height:42px;border-radius:13px;background:#FCE7F0;color:var(--accent);display:grid;place-items:center;flex:0 0 auto}
+.loc .ic svg{width:19px;height:19px}
+.loc .lt{display:block;font-size:13.5px;font-weight:800}
+.loc .lv{display:block;font-size:12px;color:var(--ink2);margin-top:2px;line-height:1.45}
+.rev{margin-top:26px;text-align:center;background:var(--surface);border:1px solid var(--stroke);border-radius:18px;padding:16px 14px}
+.stars{display:flex;justify-content:center;gap:3px;color:var(--star);margin-bottom:8px}
+.stars svg{width:17px;height:17px}
+.rev h3{margin:0;font-family:var(--serif);font-size:16px}
+.rev p{margin:5px 0 13px;font-size:12.5px;color:var(--ink2)}
+.foot{margin:20px 0 0;text-align:center;font-size:12px;color:var(--ink2)}
+.foot a{color:var(--ink);font-weight:800;text-decoration:none;border-bottom:1px solid var(--stroke)}
+.num{direction:ltr;unicode-bidi:isolate}
+
+/* lightbox + toast */
+.lb{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;padding:18px;background:rgba(24,12,16,.93)}
+.lb[hidden]{display:none}
+.lb img{max-width:100%;max-height:88vh;border-radius:16px}
+.lbx{position:absolute;top:14px;inset-inline-end:14px;width:42px;height:42px;border-radius:50%;border:none;background:rgba(255,255,255,.16);color:#fff;font-size:18px;cursor:pointer}
+.toast{position:fixed;inset-inline:0;bottom:calc(22px + env(safe-area-inset-bottom));z-index:70;display:flex;justify-content:center;opacity:0;transition:opacity .2s ease;pointer-events:none}
+.toast.on{opacity:1}
+.toast span{background:var(--ink);color:#fff;border-radius:999px;padding:10px 18px;font-size:13px;font-weight:700}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<main class="wrap" id="app"></main>
+
+<div class="lb" id="lb" hidden>
+  <button class="lbx" id="lbx" aria-label="close">✕</button>
+  <img id="lbi" alt="">
+</div>
+<div class="toast" id="toast"><span id="toastMsg"></span></div>
+
+<script>
+/* =====================================================================
+   nfc4all — التصميم 6 · CARTE (بطاقة كتدور + منيو بالصور)
+   بدّل غير داخل EDIT ZONE. أي حقل خاوي "" كيختفي من البطاقة.
+   ===================================================================== */
+/* EDIT ZONE */
+const CARD = {
+  defaultLang: "ar",
+  autoDetectLang: true,
+
+  accent:  "#BE185D",
+  accent2: "#831843",
+  gold:    "#D9B471",
+
+  logo: "img/logo.jpg",
+
+  name: { ar: "حلويات الياسمين", fr: "Pâtisserie Yasmine", en: "Yasmine Pastry" },
+  role: { ar: "حلويات مغربية وكيك المناسبات", fr: "Pâtisserie marocaine & gâteaux", en: "Moroccan pastry & event cakes" },
+  city: { ar: "الرباط · حسان", fr: "Rabat · Hassan", en: "Rabat · Hassan" },
+  bio: {
+    ar: "حلويات تقليدية مصنوعة ف الدار، وكيك الأعراس بالطلب. الطلبية قبل 48 ساعة.",
+    fr: "Pâtisserie traditionnelle faite maison et gâteaux de mariage sur commande. 48h à l'avance.",
+    en: "Homemade traditional pastry and custom wedding cakes. Please order 48h ahead."
+  },
+
+  phone:    "+212612345678",
+  whatsapp: "+212612345678",
+  email:    "commande@yasmine.ma",
+  website:  "",
+
+  maps:    "https://maps.google.com/?q=Hassan+Rabat",
+  address: { ar: "شارع النخيل 12، حسان، الرباط", fr: "Av. des Palmiers 12, Hassan, Rabat", en: "12 Palm Avenue, Hassan, Rabat" },
+
+  facebook:  "https://facebook.com/",
+  instagram: "https://instagram.com/",
+  tiktok:    "https://tiktok.com/",
+
+  review: "https://g.page/r/XXXXXXXX/review",
+
+  menu: [
+    { img: "img/m1.jpg", name: { ar: "كعب الغزال", fr: "Cornes de gazelle", en: "Gazelle horns" },
+      desc: { ar: "لوز طري وماء الزهر", fr: "Amande fraîche & fleur d'oranger", en: "Fresh almond & orange blossom" }, price: "120 DH / kg" },
+    { img: "img/m2.jpg", name: { ar: "شباكية", fr: "Chebakia", en: "Chebakia" },
+      desc: { ar: "عسل طبيعي وجلجلان", fr: "Miel naturel & sésame", en: "Natural honey & sesame" }, price: "90 DH / kg" },
+    { img: "img/m3.jpg", name: { ar: "تارت الفراولة", fr: "Tarte aux fraises", en: "Strawberry tart" },
+      desc: { ar: "كريمة طازجة · قطعة", fr: "Crème fraîche · la part", en: "Fresh cream · per slice" }, price: "45 DH" },
+    { img: "img/m4.jpg", name: { ar: "كيك الأعراس", fr: "Gâteau de mariage", en: "Wedding cake" },
+      desc: { ar: "حسب الطلب · 3 طوابق", fr: "Sur mesure · 3 étages", en: "Custom · 3 tiers" }, price: { ar: "من 600 DH", fr: "à partir de 600 DH", en: "from 600 DH" } },
+    { img: "img/m5.jpg", name: { ar: "بلاطو حلويات", fr: "Plateau assorti", en: "Assorted platter" },
+      desc: { ar: "7 أنواع · للمناسبات", fr: "7 variétés · événements", en: "7 kinds · events" }, price: "250 DH" }
+  ],
+
+  gallery: [
+    { src: "img/w1.jpg", caption: { ar: "فيترينة المحل", fr: "Notre vitrine", en: "Our display" } },
+    { src: "img/w2.jpg", caption: { ar: "طاولة حلويات للأعراس", fr: "Table de mariage", en: "Wedding sweet table" } },
+    { src: "img/w3.jpg", caption: { ar: "من المطبخ، كل صباح", fr: "En cuisine, chaque matin", en: "In the kitchen, every morning" } }
+  ],
+
+  hours: [
+    { days: { ar: "الاثنين – السبت", fr: "Lundi – Samedi", en: "Mon – Sat" }, time: "09:00 – 21:00" },
+    { days: { ar: "الأحد", fr: "Dimanche", en: "Sunday" }, time: "10:00 – 18:00" }
+  ],
+  hoursNote: { ar: "طلبيات المناسبات: قبل 48 ساعة على الأقل.", fr: "Commandes événement : 48h minimum.", en: "Event orders: 48h minimum." },
+
+  vcard: { firstName: "Yasmine", lastName: "Pastry", fullName: "Pâtisserie Yasmine", org: "Pâtisserie Yasmine", title: "Pastry shop", fileName: "yasmine-pastry" },
+
+  brand: { name: "nfc4all", url: "https://wa.me/212600000000" }
+};
+/* END OF EDIT ZONE */
+
+const UI = {
+  ar: { save:"حفط جهة الاتصال", wa:"واتساب", share:"مشاركة", flip:"دوّر البطاقة", facebook:"فيسبوك", instagram:"إنستغرام", tiktok:"تيك توك", website:"الموقع", email:"البريد", menu:"المنيو والأثمنة", gallery:"من أعمالنا", hours:"أوقات العمل", directions:"الاتجاهات والعنوان", review:"قيّمنا على Google", reviewSub:"دقيقة واحدة كتساعدنا بزاف", reviewBtn:"أضف تقييم", by:"بطاقة رقمية من", saved:"تحمّلت جهة الاتصال ✓", copied:"تنسخ الرابط ✓" },
+  fr: { save:"Enregistrer", wa:"WhatsApp", share:"Partager", flip:"Retourner la carte", facebook:"Facebook", instagram:"Instagram", tiktok:"TikTok", website:"Site web", email:"E-mail", menu:"Menu & tarifs", gallery:"Nos réalisations", hours:"Horaires", directions:"Adresse & itinéraire", review:"Laissez un avis Google", reviewSub:"Une minute qui nous aide beaucoup", reviewBtn:"Donner mon avis", by:"Carte numérique par", saved:"Contact téléchargé ✓", copied:"Lien copié ✓" },
+  en: { save:"Save contact", wa:"WhatsApp", share:"Share", flip:"Flip the card", facebook:"Facebook", instagram:"Instagram", tiktok:"TikTok", website:"Website", email:"Email", menu:"Menu & prices", gallery:"Our work", hours:"Opening hours", directions:"Address & directions", review:"Review us on Google", reviewSub:"One minute helps us a lot", reviewBtn:"Write a review", by:"Digital card by", saved:"Contact downloaded ✓", copied:"Link copied ✓" }
+};
+
+const S = 'viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"';
+const F = 'viewBox="0 0 24 24" fill="currentColor"';
+const I = {
+  call:  '<svg '+S+'><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>',
+  wa:    '<svg '+F+'><path d="M12.04 2C6.6 2 2.2 6.4 2.2 11.84c0 1.74.46 3.44 1.32 4.94L2 22l5.36-1.4a9.86 9.86 0 0 0 4.68 1.2h.01c5.43 0 9.84-4.4 9.84-9.84S17.47 2 12.04 2zm5.76 13.9c-.24.68-1.4 1.3-1.93 1.35-.5.06-1.12.08-1.8-.11a13.6 13.6 0 0 1-4.9-3.05 11 11 0 0 1-2.1-3.28c-.22-.6-.02-1.5.36-2 .2-.26.42-.32.57-.32l.4.01c.13 0 .3-.05.47.36.17.42.6 1.47.65 1.58.05.1.08.24.01.38-.07.15-.32.5-.5.68-.1.1-.24.2-.1.44.15.24.66 1.07 1.42 1.74.98.86 1.66 1.1 1.9 1.22.23.12.37.1.51-.06.14-.16.6-.7.76-.94.16-.24.32-.2.53-.12.22.08 1.36.64 1.6.76.23.12.39.18.44.28.06.1.06.6-.19 1.18z"/></svg>',
+  fb:    '<svg '+F+'><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06C2 17.08 5.66 21.25 10.44 22v-7.02H7.9v-2.92h2.54V9.85c0-2.52 1.49-3.91 3.77-3.91 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.77l-.44 2.92h-2.33V22C18.34 21.25 22 17.08 22 12.06z"/></svg>',
+  ig:    '<svg '+S+'><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>',
+  tt:    '<svg '+F+'><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.1v12.4a2.59 2.59 0 1 1-1.83-2.48V9.75a5.7 5.7 0 1 0 4.93 5.65V8.9a7.35 7.35 0 0 0 4.3 1.38V7.18a4.29 4.29 0 0 1-3.24-1.36z"/></svg>',
+  globe: '<svg '+S+'><circle cx="12" cy="12" r="9.5"/><path d="M2.6 12h18.8M12 2.5c2.6 2.6 3.9 6 3.9 9.5s-1.3 6.9-3.9 9.5c-2.6-2.6-3.9-6-3.9-9.5S9.4 5.1 12 2.5z"/></svg>',
+  mail:  '<svg '+S+'><rect x="2.5" y="4.5" width="19" height="15" rx="3"/><path d="m3.5 7 7.6 5.3a2 2 0 0 0 2.3 0L21 7"/></svg>',
+  pin:   '<svg '+S+'><path d="M20 10.5c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0z"/><circle cx="12" cy="10.3" r="3"/></svg>',
+  star:  '<svg '+F+'><path d="m12 2.6 2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.4 6.2 20.5l1.1-6.5L2.6 9.4l6.5-.9L12 2.6z"/></svg>',
+  user:  '<svg '+S+'><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>',
+  share: '<svg '+S+'><path d="M12 16V3.5m0 0L7.8 7.7M12 3.5l4.2 4.2M4.5 14v4.5a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V14"/></svg>',
+  flip:  '<svg '+S+'><path d="M3 12a9 9 0 0 1 15.3-6.4M21 4.5V9h-4.5M21 12a9 9 0 0 1-15.3 6.4M3 19.5V15h4.5"/></svg>'
+};
+
+const LANGS = ["ar", "fr", "en"];
+const root = document.documentElement;
+const PARAMS = new URLSearchParams(location.search);
+
+function pickLang(){
+  const q = PARAMS.get("lang");
+  if (q && LANGS.indexOf(q) > -1) return q;
+  try { const s = localStorage.getItem("nfc4all-lang"); if (s && LANGS.indexOf(s) > -1) return s; } catch(err) {}
+  if (CARD.autoDetectLang !== false) {
+    const n = (navigator.language || "").slice(0,2).toLowerCase();
+    if (LANGS.indexOf(n) > -1) return n;
+  }
+  return LANGS.indexOf(CARD.defaultLang) > -1 ? CARD.defaultLang : "ar";
+}
+let LANG = pickLang();
+
+function t(v){
+  if (v === null || v === undefined) return "";
+  if (typeof v === "object") return v[LANG] || v.ar || v.fr || v.en || "";
+  return String(v);
+}
+function e(s){
+  return String(s === null || s === undefined ? "" : s)
+    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+function nc(v){
+  return (/[0-9]/.test(v) && !/[\u0600-\u06FF]/.test(v)) ? " num" : "";
+}
+function digits(v){ return String(v || "").replace(/[^0-9]/g, ""); }
+
+function render(){
+  const c = CARD, u = UI[LANG];
+  root.lang = LANG;
+  root.dir = (LANG === "ar") ? "rtl" : "ltr";
+  document.getElementById("ttl").textContent = t(c.name) + (c.role ? " — " + t(c.role) : "");
+  if (c.accent)  root.style.setProperty("--accent", c.accent);
+  if (c.accent2) root.style.setProperty("--accent2", c.accent2);
+  if (c.gold)    root.style.setProperty("--gold", c.gold);
+
+  const p = [];
+
+  p.push('<div class="langbar">' + LANGS.map(function(l){
+    return '<button class="lg' + (l === LANG ? ' on' : '') + '" data-lang="' + l + '">' + (l === "ar" ? "ع" : l.toUpperCase()) + '</button>';
+  }).join("") + '</div>');
+
+  /* 1 · the flip card */
+  const bl = [];
+  if (c.phone)   bl.push('<li>' + I.call + '<span class="num">' + e(c.phone) + '</span></li>');
+  if (c.email)   bl.push('<li>' + I.mail + '<span>' + e(c.email) + '</span></li>');
+  if (c.address) bl.push('<li>' + I.pin + '<span>' + e(t(c.address)) + '</span></li>');
+  const bs = [];
+  if (c.facebook)  bs.push('<a class="fb" target="_blank" rel="noopener" href="' + e(c.facebook) + '" aria-label="Facebook">' + I.fb + '</a>');
+  if (c.instagram) bs.push('<a class="ig" target="_blank" rel="noopener" href="' + e(c.instagram) + '" aria-label="Instagram">' + I.ig + '</a>');
+  if (c.tiktok)    bs.push('<a class="tt" target="_blank" rel="noopener" href="' + e(c.tiktok) + '" aria-label="TikTok">' + I.tt + '</a>');
+
+  p.push('<div class="cardwrap">' +
+    '<div class="flip' + (PARAMS.get("flip") === "1" ? ' on' : '') + '" id="flip" role="button" tabindex="0">' +
+      '<div class="face front">' +
+        '<div>' +
+          '<div class="fh">' +
+            (c.logo ? '<img class="mk" src="' + e(c.logo) + '" alt="">' : '') +
+            '<div><h1>' + e(t(c.name)) + '</h1>' + (c.role ? '<p>' + e(t(c.role)) + '</p>' : '') + '</div>' +
+          '</div>' +
+          '<div class="gl"></div>' +
+        '</div>' +
+        '<div class="fb2">' +
+          (c.phone ? '<span class="ph num">' + e(c.phone) + '</span>' : '<span></span>') +
+          (c.city ? '<span class="ct">' + e(t(c.city)) + '</span>' : '') +
+        '</div>' +
+      '</div>' +
+      '<div class="face back">' +
+        (c.bio ? '<p class="bt">' + e(t(c.bio)) + '</p>' : '') +
+        (bl.length ? '<ul class="bl">' + bl.join("") + '</ul>' : '') +
+        (bs.length ? '<div class="bs">' + bs.join("") + '</div>' : '') +
+      '</div>' +
+    '</div>' +
+  '</div>');
+  p.push('<button class="hint" id="hint">' + I.flip + '<span>' + u.flip + '</span></button>');
+
+  /* 2 · CTA */
+  p.push('<div class="cta">' +
+    '<button class="b p" id="save">' + I.user + '<span>' + u.save + '</span></button>' +
+    (c.whatsapp
+      ? '<a class="b w" target="_blank" rel="noopener" href="https://wa.me/' + digits(c.whatsapp) + '">' + I.wa + '<span>' + u.wa + '</span></a>'
+      : '<button class="b s" id="share2">' + I.share + '<span>' + u.share + '</span></button>') +
+  '</div>');
+
+  /* 3 · chips */
+  const ch = [];
+  if (c.facebook)  ch.push('<a class="chip fb" target="_blank" rel="noopener" href="' + e(c.facebook) + '">' + I.fb + '<span>' + u.facebook + '</span></a>');
+  if (c.instagram) ch.push('<a class="chip ig" target="_blank" rel="noopener" href="' + e(c.instagram) + '">' + I.ig + '<span>' + u.instagram + '</span></a>');
+  if (c.tiktok)    ch.push('<a class="chip tt" target="_blank" rel="noopener" href="' + e(c.tiktok) + '">' + I.tt + '<span>' + u.tiktok + '</span></a>');
+  if (c.website)   ch.push('<a class="chip web" target="_blank" rel="noopener" href="' + e(c.website) + '">' + I.globe + '<span>' + u.website + '</span></a>');
+  if (c.email)     ch.push('<a class="chip mail" href="mailto:' + e(c.email) + '">' + I.mail + '<span>' + u.email + '</span></a>');
+  ch.push('<button class="chip" id="share">' + I.share + '<span>' + u.share + '</span></button>');
+  p.push('<div class="chips">' + ch.join("") + '</div>');
+
+  /* 4 · menu with photos */
+  if (c.menu && c.menu.length) p.push('<section class="sec">' +
+    '<div class="sh"><h2>' + u.menu + '</h2><i></i></div>' +
+    '<div class="panel" id="menu">' + c.menu.map(function(m){
+      return '<a class="mr"' + (m.img ? ' href="' + e(m.img) + '"' : '') + '>' +
+        (m.img ? '<img src="' + e(m.img) + '" alt="" loading="lazy">' : '') +
+        '<span class="mb"><span class="mn">' + e(t(m.name)) + '</span>' +
+        (m.desc ? '<span class="md">' + e(t(m.desc)) + '</span>' : '') + '</span>' +
+        (m.price ? '<span class="mp' + nc(t(m.price)) + '">' + e(t(m.price)) + '</span>' : '') +
+      '</a>';
+    }).join("") + '</div></section>');
+
+  /* 5 · wide gallery */
+  if (c.gallery && c.gallery.length) p.push('<section class="sec">' +
+    '<div class="sh"><h2>' + u.gallery + '</h2><i></i></div>' +
+    '<div class="wide" id="wide">' + c.gallery.map(function(g){
+      const src = (typeof g === "string") ? g : g.src;
+      const cap = (typeof g === "string") ? "" : t(g.caption);
+      return '<a class="wi" href="' + e(src) + '"><img src="' + e(src) + '" alt="" loading="lazy">' +
+        (cap ? '<span>' + e(cap) + '</span>' : '') + '</a>';
+    }).join("") + '</div></section>');
+
+  /* 6 · hours */
+  if (c.hours && c.hours.length) p.push('<section class="sec">' +
+    '<div class="sh"><h2>' + u.hours + '</h2><i></i></div>' +
+    '<div class="panel"><div class="hrsg">' + c.hours.map(function(h){
+      return '<span class="d">' + e(t(h.days)) + '</span><span class="v' + nc(t(h.time)) + '">' + e(t(h.time)) + '</span>';
+    }).join("") + '</div>' +
+    (c.hoursNote ? '<p class="note">' + e(t(c.hoursNote)) + '</p>' : '') + '</div></section>');
+
+  /* 7 · location */
+  if (c.maps || c.address) {
+    const inner = '<span class="ic">' + I.pin + '</span><span><span class="lt">' + u.directions + '</span>' +
+      (c.address ? '<span class="lv">' + e(t(c.address)) + '</span>' : '') + '</span>';
+    p.push('<section class="sec">' + (c.maps
+      ? '<a class="panel loc" target="_blank" rel="noopener" href="' + e(c.maps) + '">' + inner + '</a>'
+      : '<div class="panel loc">' + inner + '</div>') + '</section>');
+  }
+
+  /* 8 · review */
+  if (c.review) p.push('<section class="rev">' +
+    '<div class="stars">' + I.star + I.star + I.star + I.star + I.star + '</div>' +
+    '<h3>' + u.review + '</h3><p>' + u.reviewSub + '</p>' +
+    '<a class="b p" target="_blank" rel="noopener" href="' + e(c.review) + '">' + I.star + '<span>' + u.reviewBtn + '</span></a>' +
+  '</section>');
+
+  if (c.brand && c.brand.name) p.push('<p class="foot">' + u.by + ' <a href="' + e(c.brand.url || "#") + '" target="_blank" rel="noopener">' + e(c.brand.name) + '</a></p>');
+
+  document.getElementById("app").innerHTML = p.join("");
+  wire();
+}
+
+function wire(){
+  Array.prototype.forEach.call(document.querySelectorAll(".lg"), function(b){
+    b.addEventListener("click", function(){
+      LANG = b.getAttribute("data-lang");
+      try { localStorage.setItem("nfc4all-lang", LANG); } catch(err) {}
+      render();
+    });
+  });
+
+  const flip = document.getElementById("flip");
+  const hint = document.getElementById("hint");
+  function doFlip(){ if (flip) flip.classList.toggle("on"); }
+  if (flip) {
+    flip.addEventListener("click", function(ev){
+      if (ev.target.closest("a")) return;
+      doFlip();
+    });
+    flip.addEventListener("keydown", function(ev){
+      if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); doFlip(); }
+    });
+  }
+  if (hint) hint.addEventListener("click", doFlip);
+
+  const sv = document.getElementById("save");
+  if (sv) sv.addEventListener("click", saveContact);
+  const sh = document.getElementById("share");
+  if (sh) sh.addEventListener("click", shareCard);
+  const sh2 = document.getElementById("share2");
+  if (sh2) sh2.addEventListener("click", shareCard);
+
+  ["menu", "wide"].forEach(function(id){
+    const box = document.getElementById(id);
+    if (!box) return;
+    box.addEventListener("click", function(ev){
+      const a = ev.target.closest("a");
+      if (!a || !a.getAttribute("href")) return;
+      ev.preventDefault();
+      document.getElementById("lbi").src = a.getAttribute("href");
+      document.getElementById("lb").hidden = false;
+    });
+  });
+}
+
+function closeLb(){ document.getElementById("lb").hidden = true; }
+document.getElementById("lbx").addEventListener("click", closeLb);
+document.getElementById("lb").addEventListener("click", function(ev){ if (ev.target.id === "lb") closeLb(); });
+document.addEventListener("keydown", function(ev){ if (ev.key === "Escape") closeLb(); });
+
+function vcardText(){
+  const c = CARD, v = c.vcard || {}, L = [];
+  L.push("BEGIN:VCARD", "VERSION:3.0");
+  L.push("N:" + (v.lastName || "") + ";" + (v.firstName || "") + ";;;");
+  L.push("FN:" + (v.fullName || t(c.name)));
+  if (v.org)   L.push("ORG:" + v.org);
+  if (v.title) L.push("TITLE:" + v.title);
+  if (c.phone)    L.push("TEL;TYPE=CELL:" + c.phone);
+  if (c.whatsapp && c.whatsapp !== c.phone) L.push("TEL;TYPE=WORK:" + c.whatsapp);
+  if (c.email)   L.push("EMAIL;TYPE=INTERNET:" + c.email);
+  if (c.website) L.push("URL:" + c.website);
+  if (c.address) L.push("ADR;TYPE=WORK:;;" + t(c.address) + ";;;;");
+  if (c.facebook)  L.push("X-SOCIALPROFILE;TYPE=facebook:" + c.facebook);
+  if (c.instagram) L.push("X-SOCIALPROFILE;TYPE=instagram:" + c.instagram);
+  if (c.tiktok)    L.push("X-SOCIALPROFILE;TYPE=tiktok:" + c.tiktok);
+  L.push("NOTE:" + t(c.role));
+  L.push("END:VCARD");
+  return L.join("\r\n");
+}
+
+function saveContact(){
+  try {
+    const blob = new Blob([vcardText()], { type: "text/vcard;charset=utf-8" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = ((CARD.vcard && CARD.vcard.fileName) || "contact") + ".vcf";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 4000);
+    toast(UI[LANG].saved);
+  } catch(err) { toast(UI[LANG].saved); }
+}
+
+function shareCard(){
+  const data = { title: t(CARD.name), text: t(CARD.role), url: location.href };
+  if (navigator.share) { navigator.share(data).catch(function(){}); return; }
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(location.href).then(function(){ toast(UI[LANG].copied); }).catch(function(){});
+  }
+}
+
+let toastTimer = null;
+function toast(msg){
+  const box = document.getElementById("toast");
+  document.getElementById("toastMsg").textContent = msg;
+  box.classList.add("on");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ box.classList.remove("on"); }, 2400);
+}
+
+render();
+</script>
+</body>
+</html>

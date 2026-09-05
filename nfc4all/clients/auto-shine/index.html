@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F4F1EA">
+<meta name="color-scheme" content="light">
+<title id="ttl">Auto Shine</title>
+<style>
+:root{--ink:#1C1917;--ink2:#6E6459;--canvas:#F4F1EA;--tile:#FFFFFF;--tile2:#F0EBE1;--stroke:#E5DED1;--accent:#EA580C;--accent2:#C2410C;--soft:#FDECE0;--wa:#16A34A;--fb:#2563EB;--tt:#141414;--gold:#F59E0B;--r:22px;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans Arabic","Helvetica Neue",Arial,sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--canvas);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+.wrap{max-width:430px;margin:0 auto;padding:16px 14px calc(26px + env(safe-area-inset-bottom))}
+.langbar{display:flex;justify-content:flex-end;gap:6px;margin-bottom:12px}
+.lg{width:44px;height:34px;border-radius:12px;border:1px solid var(--stroke);background:var(--tile);color:var(--ink2);font:700 13px/1 var(--sans);cursor:pointer}
+.lg.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.t{background:var(--tile);border:1px solid var(--stroke);border-radius:var(--r);padding:14px;box-shadow:0 1px 2px rgba(28,25,23,.04),0 14px 30px -22px rgba(28,25,23,.45)}
+.w2{grid-column:span 2}
+
+.hero{padding:16px}
+.hrow{display:flex;align-items:center;gap:12px}
+.lg2{width:60px;height:60px;border-radius:16px;object-fit:cover;border:1px solid var(--stroke);flex:0 0 auto}
+.hb{min-width:0}
+.hero h1{margin:0;font-size:21px;line-height:1.25;letter-spacing:-.2px}
+.role{margin:3px 0 0;font-size:13.5px;font-weight:700;color:var(--accent)}
+.city{margin:2px 0 0;font-size:12.5px;color:var(--ink2)}
+.chip{display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:5px 10px;border-radius:999px;background:var(--soft);color:var(--accent2);font-size:12px;font-weight:800}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--wa);display:inline-block}
+.bio{margin:10px 0 0;font-size:13.5px;line-height:1.65;color:var(--ink2)}
+
+.act{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.b{display:flex;align-items:center;justify-content:center;gap:7px;height:48px;border-radius:14px;border:1px solid transparent;font:800 14px/1 var(--sans);cursor:pointer;text-decoration:none}
+.b svg{width:17px;height:17px;flex:0 0 auto}
+.b.p{background:var(--accent);color:#fff}
+.b.s{background:var(--tile2);color:var(--ink);border-color:var(--stroke)}
+
+.big{display:flex;flex-direction:column;gap:6px;text-decoration:none;color:#fff;border:none;min-height:122px}
+.big .ic{width:38px;height:38px;border-radius:12px;background:rgba(255,255,255,.22);display:grid;place-items:center}
+.big .ic svg{width:19px;height:19px}
+.big .bl{font-size:15px;font-weight:800;margin-top:auto}
+.big .bv{font-size:12.5px;opacity:.9}
+.big.call{background:linear-gradient(150deg,var(--accent),var(--accent2))}
+.big.wa{background:linear-gradient(150deg,#22C55E,#15803D)}
+
+.socs{display:flex;flex-wrap:wrap;justify-content:space-around;gap:10px}
+.so{width:70px;text-decoration:none;text-align:center}
+.so i{width:46px;height:46px;border-radius:15px;display:grid;place-items:center;margin:0 auto 6px;color:#fff}
+.so i svg{width:21px;height:21px}
+.so span{display:block;font-size:11.5px;font-weight:700;color:var(--ink2)}
+.so.fb i{background:var(--fb)}
+.so.ig i{background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF)}
+.so.tt i{background:var(--tt)}
+.so.web i{background:var(--ink)}
+.so.mail i{background:#0EA5E9}
+
+.stats{display:flex;padding:14px 6px}
+.st{flex:1;text-align:center;padding:0 6px}
+.st+.st{border-inline-start:1px solid var(--stroke)}
+.sv{font-size:19px;font-weight:900;letter-spacing:-.3px}
+.sl{font-size:11px;color:var(--ink2);margin-top:3px;font-weight:600}
+
+.th{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.th svg{width:16px;height:16px;color:var(--accent);flex:0 0 auto}
+.th h2{margin:0;font-size:12.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--ink)}
+
+.sl2{list-style:none;margin:0;padding:0}
+.sl2 li{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px dashed var(--stroke)}
+.sl2 li:first-child{border-top:none}
+.sl2 .n{flex:1;font-size:14px;font-weight:600}
+.sl2 .pr{background:var(--soft);color:var(--accent2);border-radius:999px;padding:5px 10px;font-size:12.5px;font-weight:800;white-space:nowrap}
+
+.gg{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}
+.gg a{display:block;border-radius:14px;overflow:hidden;aspect-ratio:1/1;background:var(--tile2)}
+.gg img{width:100%;height:100%;object-fit:cover;display:block}
+
+.hr{display:flex;flex-direction:column;align-items:flex-start;gap:2px;font-size:12.5px;padding:7px 0}
+.hr + .hr{border-top:1px dashed var(--stroke)}
+.hr span{color:var(--ink2);white-space:nowrap}
+.hr b{font-weight:800;white-space:nowrap}
+.note{margin:8px 0 0;font-size:11.5px;color:var(--ink2);line-height:1.5}
+.loc{display:flex;flex-direction:column;text-decoration:none;color:inherit}
+.ic2{width:40px;height:40px;border-radius:13px;background:var(--soft);color:var(--accent);display:grid;place-items:center;margin-bottom:10px}
+.ic2 svg{width:19px;height:19px}
+.ll{font-size:14px;font-weight:800}
+.lv{font-size:12.5px;color:var(--ink2);margin-top:3px;line-height:1.5}
+
+.rev{text-align:center}
+.stars{display:flex;justify-content:center;gap:3px;color:var(--gold);margin-bottom:8px}
+.stars svg{width:17px;height:17px}
+.rev h3{margin:0;font-size:15px}
+.rev p{margin:4px 0 12px;font-size:12.5px;color:var(--ink2)}
+
+.foot{margin:18px 0 0;text-align:center;font-size:12px;color:var(--ink2)}
+.foot a{color:var(--ink);font-weight:800;text-decoration:none;border-bottom:1px solid var(--stroke)}
+.num{direction:ltr;unicode-bidi:isolate}
+
+.lb{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;padding:18px;background:rgba(24,20,16,.93)}
+.lb[hidden]{display:none}
+.lb img{max-width:100%;max-height:88vh;border-radius:16px}
+.lbx{position:absolute;top:14px;inset-inline-end:14px;width:42px;height:42px;border-radius:50%;border:none;background:rgba(255,255,255,.16);color:#fff;font-size:18px;cursor:pointer}
+.toast{position:fixed;inset-inline:0;bottom:calc(22px + env(safe-area-inset-bottom));z-index:70;display:flex;justify-content:center;opacity:0;transition:opacity .2s ease;pointer-events:none}
+.toast.on{opacity:1}
+.toast span{background:var(--ink);color:#fff;border-radius:999px;padding:10px 18px;font-size:13px;font-weight:700}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<main class="wrap" id="app"></main>
+
+<div class="lb" id="lb" hidden>
+  <button class="lbx" id="lbx" aria-label="close">✕</button>
+  <img id="lbi" alt="">
+</div>
+<div class="toast" id="toast"><span id="toastMsg"></span></div>
+
+<script>
+/* =====================================================================
+   nfc4all — التصميم 5 · BENTO
+   بدّل غير داخل EDIT ZONE. أي حقل خاوي "" كيختفي من البطاقة.
+   ===================================================================== */
+/* EDIT ZONE */
+const CARD = {
+  defaultLang: "ar",
+  autoDetectLang: true,
+
+  accent:  "#EA580C",
+  accent2: "#C2410C",
+
+  logo: "img/logo.jpg",
+
+  name: { ar: "أوتو شاين", fr: "Auto Shine", en: "Auto Shine" },
+  role: { ar: "غسل وتلميع وحماية السيارات", fr: "Lavage & esthétique auto", en: "Car wash & detailing" },
+  city: { ar: "الدار البيضاء · سيدي معروف", fr: "Casablanca · Sidi Maârouf", en: "Casablanca · Sidi Maarouf" },
+  badge: { ar: "مفتوح الأن · بلا موعد", fr: "Ouvert · sans rendez-vous", en: "Open now · walk-in" },
+  bio: {
+    ar: "غسل بالبخار، تلميع، وحماية سيراميك. سيارتك كتخرج بحال الجديدة ف أقل من ساعتين.",
+    fr: "Lavage vapeur, polissage et protection céramique. Votre voiture comme neuve en moins de 2h.",
+    en: "Steam wash, polishing and ceramic protection. Your car like new in under 2 hours."
+  },
+
+  phone:    "+212612345678",
+  whatsapp: "+212612345678",
+  email:    "contact@autoshine.ma",
+  website:  "",
+
+  maps:    "https://maps.google.com/?q=Sidi+Maarouf+Casablanca",
+  address: { ar: "زنقة 12، سيدي معروف، الدار البيضاء", fr: "Rue 12, Sidi Maârouf, Casablanca", en: "Street 12, Sidi Maarouf, Casablanca" },
+
+  facebook:  "https://facebook.com/",
+  instagram: "https://instagram.com/",
+  tiktok:    "https://tiktok.com/",
+
+  review: "https://g.page/r/XXXXXXXX/review",
+
+  stats: [
+    { value: "7",     label: { ar: "سنين خبرة", fr: "ans d'expérience", en: "years" } },
+    { value: "+3000", label: { ar: "سيارة", fr: "voitures", en: "cars" } },
+    { value: "4.9",   label: { ar: "تقييم Google", fr: "note Google", en: "Google rating" } }
+  ],
+
+  services: [
+    { name: { ar: "غسل خارجي", fr: "Lavage extérieur", en: "Exterior wash" }, price: "50 DH" },
+    { name: { ar: "غسل شامل داخل وخارج", fr: "Lavage complet", en: "Full wash" }, price: "150 DH" },
+    { name: { ar: "تلميع الطلاء", fr: "Polissage", en: "Paint polishing" }, price: "500 DH" },
+    { name: { ar: "حماية سيراميك", fr: "Protection céramique", en: "Ceramic coating" }, price: "1800 DH" },
+    { name: { ar: "تنطيف المحرك", fr: "Nettoyage moteur", en: "Engine cleaning" }, price: "120 DH" }
+  ],
+
+  hours: [
+    { days: { ar: "الاثنين – السبت", fr: "Lundi – Samedi", en: "Mon – Sat" }, time: "08:30 – 20:00" },
+    { days: { ar: "الأحد", fr: "Dimanche", en: "Sunday" }, time: "09:00 – 14:00" }
+  ],
+  hoursNote: { ar: "آخر سيارة كتدخل قبل السكات بساعة.", fr: "Dernier véhicule accepté 1h avant la fermeture.", en: "Last car accepted 1h before closing." },
+
+  gallery: ["img/g1.jpg", "img/g2.jpg", "img/g3.jpg", "img/g4.jpg"],
+
+  vcard: { firstName: "Auto", lastName: "Shine", fullName: "Auto Shine", org: "Auto Shine", title: "Car detailing", fileName: "auto-shine" },
+
+  brand: { name: "nfc4all", url: "https://wa.me/212600000000" }
+};
+/* END OF EDIT ZONE */
+
+const UI = {
+  ar: { save:"حفط جهة الاتصال", share:"مشاركة", call:"اتصال مباشر", whatsapp:"واتساب", waSub:"راسلنا دابا", facebook:"فيسبوك", instagram:"إنستغرام", tiktok:"تيك توك", website:"الموقع", email:"البريد", services:"الخدمات والأثمنة", hours:"أوقات العمل", gallery:"من أعمالنا", directions:"الاتجاهات", review:"قيّمنا على Google", reviewSub:"دقيقة واحدة كتساعدنا بزاف", reviewBtn:"أضف تقييم", by:"بطاقة رقمية من", saved:"تحمّلت جهة الاتصال ✓", copied:"تنسخ الرابط ✓" },
+  fr: { save:"Enregistrer le contact", share:"Partager", call:"Appeler", whatsapp:"WhatsApp", waSub:"Écrivez-nous", facebook:"Facebook", instagram:"Instagram", tiktok:"TikTok", website:"Site web", email:"E-mail", services:"Services & tarifs", hours:"Horaires", gallery:"Nos réalisations", directions:"Itinéraire", review:"Laissez un avis Google", reviewSub:"Une minute qui nous aide beaucoup", reviewBtn:"Donner mon avis", by:"Carte numérique par", saved:"Contact téléchargé ✓", copied:"Lien copié ✓" },
+  en: { save:"Save contact", share:"Share", call:"Call", whatsapp:"WhatsApp", waSub:"Message us", facebook:"Facebook", instagram:"Instagram", tiktok:"TikTok", website:"Website", email:"Email", services:"Services & prices", hours:"Opening hours", gallery:"Our work", directions:"Directions", review:"Review us on Google", reviewSub:"One minute helps us a lot", reviewBtn:"Write a review", by:"Digital card by", saved:"Contact downloaded ✓", copied:"Link copied ✓" }
+};
+
+const S = 'viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"';
+const F = 'viewBox="0 0 24 24" fill="currentColor"';
+const I = {
+  call:  '<svg '+S+'><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>',
+  wa:    '<svg '+F+'><path d="M12.04 2C6.6 2 2.2 6.4 2.2 11.84c0 1.74.46 3.44 1.32 4.94L2 22l5.36-1.4a9.86 9.86 0 0 0 4.68 1.2h.01c5.43 0 9.84-4.4 9.84-9.84S17.47 2 12.04 2zm5.76 13.9c-.24.68-1.4 1.3-1.93 1.35-.5.06-1.12.08-1.8-.11a13.6 13.6 0 0 1-4.9-3.05 11 11 0 0 1-2.1-3.28c-.22-.6-.02-1.5.36-2 .2-.26.42-.32.57-.32l.4.01c.13 0 .3-.05.47.36.17.42.6 1.47.65 1.58.05.1.08.24.01.38-.07.15-.32.5-.5.68-.1.1-.24.2-.1.44.15.24.66 1.07 1.42 1.74.98.86 1.66 1.1 1.9 1.22.23.12.37.1.51-.06.14-.16.6-.7.76-.94.16-.24.32-.2.53-.12.22.08 1.36.64 1.6.76.23.12.39.18.44.28.06.1.06.6-.19 1.18z"/></svg>',
+  fb:    '<svg '+F+'><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06C2 17.08 5.66 21.25 10.44 22v-7.02H7.9v-2.92h2.54V9.85c0-2.52 1.49-3.91 3.77-3.91 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.77l-.44 2.92h-2.33V22C18.34 21.25 22 17.08 22 12.06z"/></svg>',
+  ig:    '<svg '+S+'><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>',
+  tt:    '<svg '+F+'><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.1v12.4a2.59 2.59 0 1 1-1.83-2.48V9.75a5.7 5.7 0 1 0 4.93 5.65V8.9a7.35 7.35 0 0 0 4.3 1.38V7.18a4.29 4.29 0 0 1-3.24-1.36z"/></svg>',
+  globe: '<svg '+S+'><circle cx="12" cy="12" r="9.5"/><path d="M2.6 12h18.8M12 2.5c2.6 2.6 3.9 6 3.9 9.5s-1.3 6.9-3.9 9.5c-2.6-2.6-3.9-6-3.9-9.5S9.4 5.1 12 2.5z"/></svg>',
+  mail:  '<svg '+S+'><rect x="2.5" y="4.5" width="19" height="15" rx="3"/><path d="m3.5 7 7.6 5.3a2 2 0 0 0 2.3 0L21 7"/></svg>',
+  pin:   '<svg '+S+'><path d="M20 10.5c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0z"/><circle cx="12" cy="10.3" r="3"/></svg>',
+  clock: '<svg '+S+'><circle cx="12" cy="12" r="9.5"/><path d="M12 7.2V12l3.4 2"/></svg>',
+  tag:   '<svg '+S+'><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0l-7.2-7.2A2 2 0 0 1 2.8 12V4.8A2 2 0 0 1 4.8 2.8H12a2 2 0 0 1 1.4.6l7.2 7.2a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.4" fill="currentColor" stroke="none"/></svg>',
+  img:   '<svg '+S+'><rect x="3" y="3.5" width="18" height="17" rx="4"/><circle cx="8.6" cy="9.2" r="1.9"/><path d="m3.6 17.5 4.6-4.3a2 2 0 0 1 2.7 0l3 2.8m0 0 2-1.8a2 2 0 0 1 2.7 0l1.8 1.7"/></svg>',
+  star:  '<svg '+F+'><path d="m12 2.6 2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.4 6.2 20.5l1.1-6.5L2.6 9.4l6.5-.9L12 2.6z"/></svg>',
+  user:  '<svg '+S+'><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>',
+  share: '<svg '+S+'><path d="M12 16V3.5m0 0L7.8 7.7M12 3.5l4.2 4.2M4.5 14v4.5a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V14"/></svg>'
+};
+
+const LANGS = ["ar", "fr", "en"];
+const root = document.documentElement;
+
+function pickLang(){
+  const q = new URLSearchParams(location.search).get("lang");
+  if (q && LANGS.indexOf(q) > -1) return q;
+  try { const s = localStorage.getItem("nfc4all-lang"); if (s && LANGS.indexOf(s) > -1) return s; } catch(err) {}
+  if (CARD.autoDetectLang !== false) {
+    const n = (navigator.language || "").slice(0,2).toLowerCase();
+    if (LANGS.indexOf(n) > -1) return n;
+  }
+  return LANGS.indexOf(CARD.defaultLang) > -1 ? CARD.defaultLang : "ar";
+}
+let LANG = pickLang();
+
+function t(v){
+  if (v === null || v === undefined) return "";
+  if (typeof v === "object") return v[LANG] || v.ar || v.fr || v.en || "";
+  return String(v);
+}
+function e(s){
+  return String(s === null || s === undefined ? "" : s)
+    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+function nc(v){
+  return (/[0-9]/.test(v) && !/[\u0600-\u06FF]/.test(v)) ? " num" : "";
+}
+function digits(v){ return String(v || "").replace(/[^0-9]/g, ""); }
+
+function render(){
+  const c = CARD, u = UI[LANG];
+  root.lang = LANG;
+  root.dir = (LANG === "ar") ? "rtl" : "ltr";
+  document.getElementById("ttl").textContent = t(c.name) + (c.role ? " — " + t(c.role) : "");
+  if (c.accent)  root.style.setProperty("--accent", c.accent);
+  if (c.accent2) root.style.setProperty("--accent2", c.accent2);
+
+  const p = [];
+
+  p.push('<div class="langbar">' + LANGS.map(function(l){
+    return '<button class="lg' + (l === LANG ? ' on' : '') + '" data-lang="' + l + '">' + (l === "ar" ? "ع" : l.toUpperCase()) + '</button>';
+  }).join("") + '</div>');
+
+  p.push('<div class="grid">');
+
+  /* 1 · hero tile */
+  p.push('<section class="t hero w2">' +
+    '<div class="hrow">' +
+      (c.logo ? '<img class="lg2" src="' + e(c.logo) + '" alt="">' : '') +
+      '<div class="hb">' +
+        '<h1>' + e(t(c.name)) + '</h1>' +
+        (c.role ? '<p class="role">' + e(t(c.role)) + '</p>' : '') +
+        (c.city ? '<p class="city">' + e(t(c.city)) + '</p>' : '') +
+      '</div>' +
+    '</div>' +
+    (c.badge ? '<div class="chip"><i class="dot"></i>' + e(t(c.badge)) + '</div>' : '') +
+    (c.bio ? '<p class="bio">' + e(t(c.bio)) + '</p>' : '') +
+  '</section>');
+
+  /* 2 · actions tile */
+  p.push('<section class="t act w2">' +
+    '<button class="b p" id="save">' + I.user + '<span>' + u.save + '</span></button>' +
+    '<button class="b s" id="share">' + I.share + '<span>' + u.share + '</span></button>' +
+  '</section>');
+
+  /* 3 · call + whatsapp big tiles */
+  if (c.phone) p.push('<a class="t big call" href="tel:' + e(c.phone) + '">' +
+    '<span class="ic">' + I.call + '</span>' +
+    '<span class="bl">' + u.call + '</span>' +
+    '<span class="bv' + nc(c.phone) + '">' + e(c.phone) + '</span></a>');
+  if (c.whatsapp) p.push('<a class="t big wa" target="_blank" rel="noopener" href="https://wa.me/' + digits(c.whatsapp) + '">' +
+    '<span class="ic">' + I.wa + '</span>' +
+    '<span class="bl">' + u.whatsapp + '</span>' +
+    '<span class="bv">' + u.waSub + '</span></a>');
+
+  /* 4 · social tile (Facebook · Instagram · TikTok · site · mail) */
+  const so = [];
+  if (c.facebook)  so.push('<a class="so fb" target="_blank" rel="noopener" href="' + e(c.facebook) + '"><i>' + I.fb + '</i><span>' + u.facebook + '</span></a>');
+  if (c.instagram) so.push('<a class="so ig" target="_blank" rel="noopener" href="' + e(c.instagram) + '"><i>' + I.ig + '</i><span>' + u.instagram + '</span></a>');
+  if (c.tiktok)    so.push('<a class="so tt" target="_blank" rel="noopener" href="' + e(c.tiktok) + '"><i>' + I.tt + '</i><span>' + u.tiktok + '</span></a>');
+  if (c.website)   so.push('<a class="so web" target="_blank" rel="noopener" href="' + e(c.website) + '"><i>' + I.globe + '</i><span>' + u.website + '</span></a>');
+  if (c.email)     so.push('<a class="so mail" href="mailto:' + e(c.email) + '"><i>' + I.mail + '</i><span>' + u.email + '</span></a>');
+  if (so.length) p.push('<section class="t w2"><div class="socs">' + so.join("") + '</div></section>');
+
+  /* 5 · stats tile */
+  if (c.stats && c.stats.length) p.push('<section class="t stats w2">' + c.stats.map(function(s){
+    return '<div class="st"><div class="sv' + nc(t(s.value)) + '">' + e(t(s.value)) + '</div><div class="sl">' + e(t(s.label)) + '</div></div>';
+  }).join("") + '</section>');
+
+  /* 6 · services tile */
+  if (c.services && c.services.length) p.push('<section class="t w2">' +
+    '<div class="th">' + I.tag + '<h2>' + u.services + '</h2></div>' +
+    '<ul class="sl2">' + c.services.map(function(s){
+      return '<li><span class="n">' + e(t(s.name)) + '</span>' + (s.price ? '<span class="pr' + nc(t(s.price)) + '">' + e(t(s.price)) + '</span>' : '') + '</li>';
+    }).join("") + '</ul></section>');
+
+  /* 7 · gallery tile */
+  if (c.gallery && c.gallery.length) p.push('<section class="t w2">' +
+    '<div class="th">' + I.img + '<h2>' + u.gallery + '</h2></div>' +
+    '<div class="gg" id="gg">' + c.gallery.map(function(g, i){
+      return '<a href="' + e(g) + '" data-i="' + i + '"><img src="' + e(g) + '" alt="" loading="lazy"></a>';
+    }).join("") + '</div></section>');
+
+  /* 8 · hours tile */
+  if (c.hours && c.hours.length) p.push('<section class="t">' +
+    '<div class="th">' + I.clock + '<h2>' + u.hours + '</h2></div>' +
+    c.hours.map(function(h){
+      return '<div class="hr"><span>' + e(t(h.days)) + '</span><b class="' + nc(t(h.time)).trim() + '">' + e(t(h.time)) + '</b></div>';
+    }).join("") +
+    (c.hoursNote ? '<p class="note">' + e(t(c.hoursNote)) + '</p>' : '') +
+  '</section>');
+
+  /* 9 · location tile */
+  if (c.maps || c.address) {
+    const inner = '<span class="ic2">' + I.pin + '</span><span class="ll">' + u.directions + '</span>' +
+      (c.address ? '<span class="lv">' + e(t(c.address)) + '</span>' : '');
+    p.push(c.maps
+      ? '<a class="t loc" target="_blank" rel="noopener" href="' + e(c.maps) + '">' + inner + '</a>'
+      : '<div class="t loc">' + inner + '</div>');
+  }
+
+  /* 10 · review tile */
+  if (c.review) p.push('<section class="t rev w2">' +
+    '<div class="stars">' + I.star + I.star + I.star + I.star + I.star + '</div>' +
+    '<h3>' + u.review + '</h3><p>' + u.reviewSub + '</p>' +
+    '<a class="b p" target="_blank" rel="noopener" href="' + e(c.review) + '">' + I.star + '<span>' + u.reviewBtn + '</span></a>' +
+  '</section>');
+
+  p.push('</div>');
+
+  if (c.brand && c.brand.name) p.push('<p class="foot">' + u.by + ' <a href="' + e(c.brand.url || "#") + '" target="_blank" rel="noopener">' + e(c.brand.name) + '</a></p>');
+
+  document.getElementById("app").innerHTML = p.join("");
+  wire();
+}
+
+function wire(){
+  Array.prototype.forEach.call(document.querySelectorAll(".lg"), function(b){
+    b.addEventListener("click", function(){
+      LANG = b.getAttribute("data-lang");
+      try { localStorage.setItem("nfc4all-lang", LANG); } catch(err) {}
+      render();
+    });
+  });
+  const sv = document.getElementById("save");
+  if (sv) sv.addEventListener("click", saveContact);
+  const sh = document.getElementById("share");
+  if (sh) sh.addEventListener("click", shareCard);
+  const gg = document.getElementById("gg");
+  if (gg) gg.addEventListener("click", function(ev){
+    const a = ev.target.closest("a");
+    if (!a) return;
+    ev.preventDefault();
+    document.getElementById("lbi").src = a.getAttribute("href");
+    document.getElementById("lb").hidden = false;
+  });
+}
+
+function closeLb(){ document.getElementById("lb").hidden = true; }
+document.getElementById("lbx").addEventListener("click", closeLb);
+document.getElementById("lb").addEventListener("click", function(ev){ if (ev.target.id === "lb") closeLb(); });
+document.addEventListener("keydown", function(ev){ if (ev.key === "Escape") closeLb(); });
+
+function vcardText(){
+  const c = CARD, v = c.vcard || {}, L = [];
+  L.push("BEGIN:VCARD", "VERSION:3.0");
+  L.push("N:" + (v.lastName || "") + ";" + (v.firstName || "") + ";;;");
+  L.push("FN:" + (v.fullName || t(c.name)));
+  if (v.org)   L.push("ORG:" + v.org);
+  if (v.title) L.push("TITLE:" + v.title);
+  if (c.phone)    L.push("TEL;TYPE=CELL:" + c.phone);
+  if (c.whatsapp && c.whatsapp !== c.phone) L.push("TEL;TYPE=WORK:" + c.whatsapp);
+  if (c.email)   L.push("EMAIL;TYPE=INTERNET:" + c.email);
+  if (c.website) L.push("URL:" + c.website);
+  if (c.address) L.push("ADR;TYPE=WORK:;;" + t(c.address) + ";;;;");
+  if (c.facebook)  L.push("X-SOCIALPROFILE;TYPE=facebook:" + c.facebook);
+  if (c.instagram) L.push("X-SOCIALPROFILE;TYPE=instagram:" + c.instagram);
+  if (c.tiktok)    L.push("X-SOCIALPROFILE;TYPE=tiktok:" + c.tiktok);
+  L.push("NOTE:" + t(CARD.role));
+  L.push("END:VCARD");
+  return L.join("\r\n");
+}
+
+function saveContact(){
+  try {
+    const blob = new Blob([vcardText()], { type: "text/vcard;charset=utf-8" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = ((CARD.vcard && CARD.vcard.fileName) || "contact") + ".vcf";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 4000);
+    toast(UI[LANG].saved);
+  } catch(err) { toast(UI[LANG].saved); }
+}
+
+function shareCard(){
+  const data = { title: t(CARD.name), text: t(CARD.role), url: location.href };
+  if (navigator.share) { navigator.share(data).catch(function(){}); return; }
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(location.href).then(function(){ toast(UI[LANG].copied); }).catch(function(){});
+  }
+}
+
+let toastTimer = null;
+function toast(msg){
+  const box = document.getElementById("toast");
+  document.getElementById("toastMsg").textContent = msg;
+  box.classList.add("on");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ box.classList.remove("on"); }, 2400);
+}
+
+render();
+</script>
+</body>
+</html>

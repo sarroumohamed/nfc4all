@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>دار كازا العقارية — بطاقة رقمية</title>
+<meta name="description" content="وكالة عقارية في الدار البيضاء — بيع، كراء، تقييم مجاني.">
+<meta name="theme-color" content="#0F766E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="دار كازا العقارية">
+<meta property="og:description" content="بيع · كراء · تقييم مجاني — الدار البيضاء">
+<meta property="og:image" content="https://USERNAME.github.io/nfc4all/clients/dar-casa/img/cover.jpg">
+<link rel="icon" href="img/logo.jpg">
+<style>
+*{box-sizing:border-box}
+:root{
+  --accent:#0F766E; --accent2:#0B3F4A; --accent-tx:#FFFFFF; --accent-soft:#E4F1EF;
+  --canvas:#EDF1F1; --surface:#FFFFFF; --soft:#F5F8F8; --border:#E1E8E8;
+  --tx:#14201F; --tx2:#5C6D6C;
+  --wa:#1B9E4B; --fb:#2F62B5; --ig:#B5327A; --tt:#1A1A1A;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans Arabic","Helvetica Neue",Arial,sans-serif;
+  --sh:0 2px 6px rgba(12,40,38,.06), 0 12px 28px rgba(12,40,38,.09);
+}
+html,body{margin:0;padding:0}
+body{font-family:var(--sans);background:var(--canvas);color:var(--tx);font-size:16px;line-height:1.55;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased}
+.wrap{max-width:520px;margin:0 auto;min-height:100vh;background:var(--canvas)}
+.num{direction:ltr;unicode-bidi:isolate}
+button{font-family:var(--sans)}
+
+/* ---------- الرأس المتدرّج ---------- */
+.hd{position:relative;overflow:hidden;padding:14px 18px 78px;background:linear-gradient(140deg,var(--accent),var(--accent2));color:#fff}
+.hd .bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.20}
+.hd .gl{position:absolute;inset:0;background:radial-gradient(120% 85% at 82% 0%,rgba(255,255,255,.22),transparent 62%)}
+.hd-in{position:relative;z-index:2}
+.langs{display:inline-flex;gap:2px;padding:3px;border-radius:999px;background:rgba(255,255,255,.18)}
+.langs button{border:0;background:transparent;color:rgba(255,255,255,.88);font-size:13px;font-weight:700;padding:6px 13px;border-radius:999px;cursor:pointer;min-height:32px}
+.langs button[aria-pressed="true"]{background:#fff;color:var(--accent)}
+.idn{display:flex;align-items:center;gap:14px;margin-top:22px}
+.logo{width:78px;height:78px;flex:0 0 78px;border-radius:20px;object-fit:cover;background:#fff;border:3px solid rgba(255,255,255,.92);box-shadow:0 8px 20px rgba(0,0,0,.2)}
+.idn .who{min-width:0}
+.idn h1{margin:0;font-size:23px;line-height:1.25;font-weight:800;letter-spacing:-.2px}
+.role{margin:5px 0 0;font-size:14px;font-weight:700;color:rgba(255,255,255,.92)}
+.loc{margin:3px 0 0;font-size:13px;color:rgba(255,255,255,.78)}
+
+/* ---------- الورقة العلوية ---------- */
+.sheet{position:relative;z-index:3;margin:-58px 12px 0;background:var(--surface);border-radius:20px;box-shadow:var(--sh);padding:14px 14px 16px}
+.quick{display:flex;gap:8px}
+.q{flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;gap:6px;padding:11px 4px;border-radius:14px;background:var(--soft);border:1px solid var(--border);text-decoration:none;color:var(--tx);font-size:11.5px;font-weight:700}
+.q svg{width:23px;height:23px;color:var(--accent)}
+.q span{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.q.wa svg{color:var(--wa)} .q.fb svg{color:var(--fb)} .q.ig svg{color:var(--ig)} .q.tt svg{color:var(--tt)}
+.save{margin-top:10px;display:flex;align-items:center;justify-content:center;gap:9px;width:100%;min-height:52px;border:0;border-radius:14px;background:var(--accent);color:var(--accent-tx);font-size:16px;font-weight:800;cursor:pointer}
+.save svg{width:20px;height:20px}
+.share2{margin-top:8px;display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:46px;border:1px solid var(--border);border-radius:14px;background:#fff;color:var(--tx);font-size:14.5px;font-weight:700;cursor:pointer}
+.share2 svg{width:18px;height:18px;color:var(--tx2)}
+
+/* ---------- التبويبات ---------- */
+.tabs{display:flex;gap:6px;margin:18px 12px 0;padding:4px;background:#E1E8E8;border-radius:999px}
+.tabs button{flex:1;border:0;background:transparent;color:var(--tx2);font-size:14px;font-weight:700;min-height:42px;border-radius:999px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:#fff;color:var(--accent);box-shadow:0 1px 3px rgba(0,0,0,.09)}
+.panel{margin:12px 12px 0;background:var(--surface);border-radius:18px;box-shadow:var(--sh);padding:16px}
+.panel[hidden]{display:none}
+h2{margin:0 0 12px;font-size:12.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.about{margin:0;font-size:15.5px}
+
+.srv{list-style:none;margin:0;padding:0}
+.srv li{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--border)}
+.srv li:last-child{border-bottom:0;padding-bottom:0}
+.srv .nm{flex:1;min-width:0;font-size:15.5px;font-weight:600}
+.srv .pr{flex:0 0 auto;padding:5px 11px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-size:13.5px;font-weight:800}
+
+.gal{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.gal button{padding:0;border:0;background:none;cursor:pointer;border-radius:14px;overflow:hidden;aspect-ratio:3/4}
+.gal img{width:100%;height:100%;object-fit:cover;display:block}
+
+.hrs div{display:flex;justify-content:space-between;gap:10px;padding:11px 12px;border-radius:10px;font-size:14.5px}
+.hrs div:nth-child(odd){background:var(--soft)}
+.hrs b{font-weight:700}
+.note{margin:10px 2px 0;font-size:13px;color:var(--tx2)}
+
+.rows{display:grid;gap:8px}
+.row{display:flex;align-items:center;gap:12px;padding:11px;border:1px solid var(--border);border-radius:14px;background:#fff;text-decoration:none;color:var(--tx)}
+.row .ic{flex:0 0 42px;width:42px;height:42px;border-radius:12px;background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center}
+.row .ic svg{width:20px;height:20px}
+.row .bd{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+.row .lb2{display:block;font-size:12.5px;font-weight:700;color:var(--tx2)}
+.row .vl{display:block;font-size:15px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row .ch{flex:0 0 auto;color:#9EB0AF}
+.row .ch svg{width:18px;height:18px}
+[dir="rtl"] .row .ch svg{transform:scaleX(-1)}
+
+.rev{display:flex;flex-direction:column;align-items:center;gap:6px;margin:12px 12px 0;padding:18px 16px;border-radius:18px;background:linear-gradient(140deg,var(--accent),var(--accent2));color:#fff;text-decoration:none;box-shadow:var(--sh)}
+.rev .st{display:flex;gap:3px}
+.rev .st svg{width:19px;height:19px;color:#FFD37A}
+.rev b{font-size:16px;font-weight:800}
+.rev small{font-size:12.5px;opacity:.85}
+.ftr{text-align:center;padding:22px 16px calc(30px + env(safe-area-inset-bottom));font-size:12.5px;color:var(--tx2)}
+.ftr a{color:var(--tx2);font-weight:800;text-decoration:none;border-bottom:1px solid var(--border)}
+
+/* ---------- معرض الصورة + التنبيه ---------- */
+.lb{position:fixed;inset:0;z-index:60;background:rgba(8,18,18,.94);display:flex;align-items:center;justify-content:center;padding:18px}
+.lb[hidden]{display:none}
+.lb img{max-width:100%;max-height:86vh;border-radius:14px}
+.lb-x{position:absolute;top:14px;inset-inline-end:14px;width:42px;height:42px;border-radius:50%;border:0;background:rgba(255,255,255,.16);color:#fff;font-size:19px;cursor:pointer}
+.toast{position:fixed;inset-inline:0;bottom:26px;z-index:70;display:flex;justify-content:center;pointer-events:none}
+.toast[hidden]{display:none}
+.toast span{background:#14201F;color:#fff;padding:11px 18px;border-radius:999px;font-size:14px;font-weight:700;box-shadow:0 8px 24px rgba(0,0,0,.28)}
+@media (prefers-reduced-motion:no-preference){.panel,.sheet{transition:opacity .18s ease}}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<div class="lb" id="lb" hidden><button class="lb-x" id="lbx" aria-label="close">✕</button><img id="lbi" alt=""></div>
+<div class="toast" id="toast" hidden><span id="toastx"></span></div>
+
+<script>
+/* ==========================================================================
+   ▼▼▼  منطقة التعديل — EDIT ZONE  ▼▼▼
+   بدّل غير هاد القسم. أي حقل خليته "" كيختفي من البطاقة.
+   ========================================================================== */
+var CARD = {
+
+  /* --- الهوية --- */
+  name : { ar:"دار كازا العقارية", fr:"Dar Casa Immobilier", en:"Dar Casa Real Estate" },
+  role : { ar:"بيع · كراء · تقييم مجاني", fr:"Vente · Location · Estimation", en:"Sales · Rentals · Valuation" },
+  city : { ar:"الدار البيضاء · المعاريف", fr:"Casablanca · Maârif", en:"Casablanca · Maarif" },
+  about: {
+    ar:"وكالة عقارية في المعاريف منذ 2015. شقق وفيلات ومحلات تجارية، مواكبة كاملة حتى التوقيع عند الموثّق، وتقييم مجاني لملكك في 24 ساعة.",
+    fr:"Agence immobilière au Maârif depuis 2015. Appartements, villas et locaux commerciaux, accompagnement complet jusqu'à la signature chez le notaire, estimation gratuite en 24h.",
+    en:"Real estate agency in Maarif since 2015. Apartments, villas and shops, full support up to the notary signing, and a free valuation within 24 hours."
+  },
+
+  /* --- الهوية البصرية --- */
+  accent  : "#0F766E",   // لون العلامة (بداية التدرج)
+  accent2 : "#0B3F4A",   // نهاية التدرج
+  logo    : "img/logo.jpg",
+  cover   : "img/cover.jpg",   // صورة خفيفة داخل الرأس (اختيارية)
+
+  /* --- اللغة --- */
+  defaultLang   : "ar",
+  autoDetectLang: true,
+
+  /* --- التواصل --- */
+  phone      : "+212612345678",
+  whatsapp   : "+212612345678",
+  whatsappMsg: {
+    ar:"السلام، بغيت معلومات ع��ى عقار.",
+    fr:"Bonjour, je souhaite des informations sur un bien.",
+    en:"Hello, I would like information about a property."
+  },
+  email     : "contact@darcasa.ma",
+  website   : "",
+  maps      : "https://maps.google.com/?q=Maarif+Casablanca",
+  address   : { ar:"12 شارع الزرقطوني، المعاريف", fr:"12 Bd Zerktouni, Maârif", en:"12 Bd Zerktouni, Maarif" },
+  review    : "https://g.page/r/XXXXXXXX/review",
+
+  /* --- الشبكات الاجتماعية --- */
+  facebook  : "https://facebook.com/",
+  instagram : "https://instagram.com/",
+  tiktok    : "",
+
+  /* --- الخدمات --- */
+  services: [
+    { name:{ ar:"وساطة بيع",        fr:"Vente",            en:"Sales" },        price:"2.5%" },
+    { name:{ ar:"وساطة كراء",       fr:"Location",         en:"Rentals" },      price:"50%" },
+    { name:{ ar:"تقييم الملك",       fr:"Estimation",       en:"Valuation" },    price:"0 DH" },
+    { name:{ ar:"تصوير احترافي",    fr:"Photos pro",       en:"Pro photos" },   price:"400 DH" },
+    { name:{ ar:"ملف الموثّق",       fr:"Dossier notaire",  en:"Notary file" },  price:"800 DH" }
+  ],
+
+  /* --- أوقات العمل --- */
+  hours: [
+    { days:{ ar:"الاثنين – الجمعة", fr:"Lundi – Vendredi", en:"Mon – Fri" }, time:"09:00 – 19:00" },
+    { days:{ ar:"السبت",             fr:"Samedi",           en:"Saturday" }, time:"10:00 – 15:00" }
+  ],
+  hoursNote: { ar:"الزيارات بموعد مسبق فقط.", fr:"Visites sur rendez-vous.", en:"Viewings by appointment." },
+
+  /* --- معرض الصور --- */
+  gallery: ["img/p1.jpg", "img/p2.jpg", "img/p3.jpg", "img/p4.jpg"],
+
+  /* --- روابط إضافية --- */
+  extraLinks: [
+    { label:{ ar:"لائحة العقارات (PDF)", fr:"Nos biens (PDF)", en:"Listings (PDF)" }, url:"" }
+  ],
+
+  /* --- ملف جهة الاتصال --- */
+  vcard: { firstName:"Dar Casa", lastName:"", org:"Dar Casa Immobilier", title:"Real estate agency", fileName:"dar-casa" },
+
+  /* --- توقيعك --- */
+  brand: { name:"nfc4all", url:"https://wa.me/212600000000" }
+};
+/* ==========================================================================
+   ▲▲▲  END OF EDIT ZONE — ما تقربش للأسفل  ▲▲▲
+   ========================================================================== */
+(function(){
+"use strict";
+
+var UI = {
+  ar:{ save:"حفظ جهة الاتصال", share:"مشاركة البطاقة", call:"اتصال", wa:"واتساب", fb:"فيسبوك", ig:"إنستغرام", tt:"تيك توك",
+       tabAbout:"نبذة", tabServices:"الخدمات", tabPhotos:"الصور",
+       about:"من نحن", services:"الخدمات والأتمنة", photos:"معرض العقارات", hours:"أوقات العمل", contact:"الاتصال والعنوان",
+       phone:"الهاتف", maps:"الاتجاهات", mail:"البريد الإلكتروني", web:"الموقع الإلكتروني", link:"رابط",
+       review:"قيّمنا على Google", reviewSub:"دقيقة واحدة تساعدنا بزاف", copied:"تم نسخ الرابط ✓", by:"بطاقة رقمية من" },
+  fr:{ save:"Enregistrer le contact", share:"Partager la carte", call:"Appeler", wa:"WhatsApp", fb:"Facebook", ig:"Instagram", tt:"TikTok",
+       tabAbout:"À propos", tabServices:"Services", tabPhotos:"Photos",
+       about:"Qui sommes-nous", services:"Services & tarifs", photos:"Nos biens", hours:"Horaires", contact:"Contact & adresse",
+       phone:"Téléphone", maps:"Itinéraire", mail:"E-mail", web:"Site web", link:"Lien",
+       review:"Laissez un avis Google", reviewSub:"Une minute qui nous aide beaucoup", copied:"Lien copié ✓", by:"Carte numérique par" },
+  en:{ save:"Save contact", share:"Share card", call:"Call", wa:"WhatsApp", fb:"Facebook", ig:"Instagram", tt:"TikTok",
+       tabAbout:"About", tabServices:"Services", tabPhotos:"Photos",
+       about:"About us", services:"Services & prices", photos:"Our listings", hours:"Opening hours", contact:"Contact & address",
+       phone:"Phone", maps:"Directions", mail:"Email", web:"Website", link:"Link",
+       review:"Review us on Google", reviewSub:"One minute helps us a lot", copied:"Link copied ✓", by:"Digital card by" }
+};
+
+var S = "fill='none' stroke='currentColor' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'";
+var I = {
+  call:"<svg viewBox='0 0 24 24' aria-hidden='true'><path "+S+" d='M21.5 16.9v2.4a2 2 0 0 1-2.2 2 19.6 19.6 0 0 1-8.5-3 19.3 19.3 0 0 1-6-6 19.6 19.6 0 0 1-3-8.6 2 2 0 0 1 2-2.2H6a2 2 0 0 1 2 1.7c.1 1 .3 1.9.6 2.8a2 2 0 0 1-.5 2.1L7 9.3a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.8.6a2 2 0 0 1 1.7 2z'/></svg>",
+  wa:"<svg viewBox='0 0 24 24' aria-hidden='true'><path fill='currentColor' d='M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 2.1.55 4.05 1.6 5.76L2 22l4.45-1.7a9.86 9.86 0 0 0 5.59 1.72h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m0 1.83c2.16 0 4.19.84 5.72 2.37a8.04 8.04 0 0 1 2.37 5.72c0 4.46-3.63 8.08-8.09 8.08a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-2.64 1.01.99-2.57-.2-.31a8.04 8.04 0 0 1-1.26-4.31c0-4.46 3.63-8.09 8.09-8.09zm-3.4 3.9c-.16 0-.42.06-.64.3-.22.24-.85.83-.85 2.02s.87 2.34.99 2.5c.12.16 1.7 2.72 4.2 3.71 2.08.82 2.5.66 2.95.62.45-.04 1.45-.59 1.66-1.17.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28-.24-.12-1.44-.71-1.66-.79-.22-.08-.39-.12-.55.12-.16.24-.63.79-.77.95-.14.16-.28.18-.52.06-.24-.12-1.03-.38-1.96-1.21-.72-.65-1.21-1.45-1.35-1.69-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.32-.75-1.8-.19-.46-.39-.4-.53-.41h-.46z'/></svg>",
+  fb:"<svg viewBox='0 0 24 24' aria-hidden='true'><path fill='currentColor' d='M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.51 1.49-3.9 3.77-3.9 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.45 2.91h-2.33v7.03C18.34 21.24 22 17.08 22 12.06z'/></svg>",
+  ig:"<svg viewBox='0 0 24 24' aria-hidden='true'><g "+S+"><rect x='3' y='3' width='18' height='18' rx='5.2'/><circle cx='12' cy='12' r='4'/></g><circle cx='17.4' cy='6.6' r='1.25' fill='currentColor'/></svg>",
+  tt:"<svg viewBox='0 0 24 24' aria-hidden='true'><path fill='currentColor' d='M16.5 2h-3.2v13.2a2.5 2.5 0 1 1-2.5-2.5c.26 0 .5.04.74.11V9.5a5.9 5.9 0 0 0-.74-.05 5.75 5.75 0 1 0 5.75 5.75V8.9a6.5 6.5 0 0 0 3.95 1.33V7.03A3.7 3.7 0 0 1 16.5 2z'/></svg>",
+  pin:"<svg viewBox='0 0 24 24' aria-hidden='true'><g "+S+"><path d='M20 10.5c0 5.8-8 12-8 12s-8-6.2-8-12a8 8 0 1 1 16 0z'/><circle cx='12' cy='10.2' r='2.9'/></g></svg>",
+  mail:"<svg viewBox='0 0 24 24' aria-hidden='true'><g "+S+"><rect x='2.8' y='4.6' width='18.4' height='14.8' rx='2.6'/><path d='M3.4 7.2 12 13l8.6-5.8'/></g></svg>",
+  globe:"<svg viewBox='0 0 24 24' aria-hidden='true'><g "+S+"><circle cx='12' cy='12' r='9.2'/><path d='M2.8 12h18.4'/><path d='M12 2.8a15 15 0 0 1 0 18.4 15 15 0 0 1 0-18.4z'/></g></svg>",
+  clock:"<svg viewBox='0 0 24 24' aria-hidden='true'><g "+S+"><circle cx='12' cy='12' r='9.2'/><path d='M12 6.8V12l3.4 2'/></g></svg>",
+  star:"<svg viewBox='0 0 24 24' aria-hidden='true'><path fill='currentColor' d='M12 2.6l2.75 5.65 6.25.9-4.5 4.4 1.05 6.2L12 16.83 6.45 19.75l1.05-6.2L3 9.15l6.25-.9z'/></svg>",
+  user:"<svg viewBox='0 0 24 24' aria-hidden='true'><g "+S+"><path d='M19 20.5v-1.8a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v1.8'/><circle cx='12' cy='7.4' r='3.9'/></g></svg>",
+  share:"<svg viewBox='0 0 24 24' aria-hidden='true'><g "+S+"><path d='M4 12.5V19a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6.5'/><path d='M15.5 6 12 2.6 8.5 6'/><path d='M12 3v12'/></g></svg>",
+  ch:"<svg viewBox='0 0 24 24' aria-hidden='true'><path "+S+" d='M9 5l7 7-7 7'/></svg>"
+};
+
+var C = CARD;
+
+function pickLang(){
+  var m = location.search.match(/[?&]lang=(ar|fr|en)/);
+  if(m) return m[1];
+  try{ var s = localStorage.getItem("nfc4all-lang"); if(s && UI[s]) return s; }catch(e){}
+  if(C.autoDetectLang !== false){
+    var n = (navigator.language || "").slice(0,2).toLowerCase();
+    if(UI[n]) return n;
+  }
+  return UI[C.defaultLang] ? C.defaultLang : "ar";
+}
+var LANG = pickLang();
+
+function t(v){
+  if(v == null) return "";
+  if(typeof v === "string") return v;
+  return v[LANG] || v.ar || v.fr || v.en || "";
+}
+function e(s){
+  return String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+}
+/* كلاس يحمي الأرقام من الانقلاب في العربية */
+function nc(v){
+  v = String(v == null ? "" : v);
+  return (/[0-9]/.test(v) && !/[\u0600-\u06FF]/.test(v)) ? " num" : "";
+}
+
+function row(href, icon, label, value, ext){
+  if(!value) return "";
+  var tag = href ? "a" : "div";
+  return "<" + tag + " class='row'" + (href ? " href='" + e(href) + "'" : "") +
+    (ext ? " target='_blank' rel='noopener'" : "") + ">" +
+    "<span class='ic'>" + icon + "</span>" +
+    "<span class='bd'><span class='lb2'>" + e(label) + "</span>" +
+    "<span class='vl" + nc(value) + "'>" + e(value) + "</span></span>" +
+    (href ? "<span class='ch'>" + I.ch + "</span>" : "") +
+    "</" + tag + ">";
+}
+
+function render(){
+  var u = UI[LANG], h = "";
+  document.documentElement.lang = LANG;
+  document.documentElement.dir = (LANG === "ar") ? "rtl" : "ltr";
+  document.title = t(C.name) + " — " + t(C.role);
+  if(C.accent)  document.documentElement.style.setProperty("--accent", C.accent);
+  if(C.accent2) document.documentElement.style.setProperty("--accent2", C.accent2);
+
+  /* ----- الرأس ----- */
+  h += "<header class='hd'>";
+  if(C.cover) h += "<div class='bg' style=\"background-image:url('" + e(C.cover) + "')\"></div>";
+  h += "<div class='gl'></div><div class='hd-in'>";
+  h += "<div class='langs' role='group'>";
+  ["ar","fr","en"].forEach(function(L){
+    h += "<button type='button' data-lang='" + L + "' aria-pressed='" + (L === LANG) + "'>" +
+         (L === "ar" ? "ع" : L.toUpperCase()) + "</button>";
+  });
+  h += "</div>";
+  h += "<div class='idn'>";
+  if(C.logo) h += "<img class='logo' src='" + e(C.logo) + "' alt='" + e(t(C.name)) + "'>";
+  h += "<div class='who'><h1>" + e(t(C.name)) + "</h1>";
+  if(t(C.role)) h += "<p class='role'>" + e(t(C.role)) + "</p>";
+  if(t(C.city)) h += "<p class='loc'>" + e(t(C.city)) + "</p>";
+  h += "</div></div></div></header>";
+
+  /* ----- الورقة: أزرار سريعة ----- */
+  var q = [];
+  if(C.phone)     q.push({c:"call", i:I.call, l:u.call, h:"tel:" + C.phone});
+  if(C.whatsapp)  q.push({c:"wa",   i:I.wa,   l:u.wa,   h:"https://wa.me/" + String(C.whatsapp).replace(/[^0-9]/g,"") + (t(C.whatsappMsg) ? "?text=" + encodeURIComponent(t(C.whatsappMsg)) : ""), x:1});
+  if(C.facebook)  q.push({c:"fb",   i:I.fb,   l:u.fb,   h:C.facebook, x:1});
+  if(C.instagram) q.push({c:"ig",   i:I.ig,   l:u.ig,   h:C.instagram, x:1});
+  if(C.tiktok)    q.push({c:"tt",   i:I.tt,   l:u.tt,   h:C.tiktok, x:1});
+
+  h += "<div class='sheet'><div class='quick'>";
+  q.forEach(function(a){
+    h += "<a class='q " + a.c + "' href='" + e(a.h) + "'" + (a.x ? " target='_blank' rel='noopener'" : "") + ">" +
+         a.i + "<span>" + e(a.l) + "</span></a>";
+  });
+  h += "</div>";
+  h += "<button class='save' type='button' id='btn-save'>" + I.user + "<span>" + e(u.save) + "</span></button>";
+  h += "<button class='share2' type='button' id='btn-share'>" + I.share + "<span>" + e(u.share) + "</span></button>";
+  h += "</div>";
+
+  /* ----- التبويبات ----- */
+  var tabs = [];
+  if(t(C.about)) tabs.push({k:"about", l:u.tabAbout});
+  if((C.services || []).length) tabs.push({k:"services", l:u.tabServices});
+  if((C.gallery || []).length) tabs.push({k:"photos", l:u.tabPhotos});
+
+  if(tabs.length > 1){
+    h += "<div class='tabs' role='tablist'>";
+    tabs.forEach(function(tb, k){
+      h += "<button type='button' role='tab' data-tab='" + tb.k + "' aria-selected='" + (k === 0) + "'>" + e(tb.l) + "</button>";
+    });
+    h += "</div>";
+  }
+
+  var first = tabs.length ? tabs[0].k : "";
+  function open(k){ return (k === first || tabs.length <= 1) ? "" : " hidden"; }
+
+  if(t(C.about)){
+    h += "<section class='panel' data-panel='about'" + open("about") + ">" +
+         "<h2>" + e(u.about) + "</h2><p class='about'>" + e(t(C.about)) + "</p></section>";
+  }
+  if((C.services || []).length){
+    h += "<section class='panel' data-panel='services'" + open("services") + ">" +
+         "<h2>" + e(u.services) + "</h2><ul class='srv'>";
+    C.services.forEach(function(s){
+      h += "<li><span class='nm'>" + e(t(s.name)) + "</span>" +
+           (s.price ? "<span class='pr" + nc(s.price) + "'>" + e(s.price) + "</span>" : "") + "</li>";
+    });
+    h += "</ul></section>";
+  }
+  if((C.gallery || []).length){
+    h += "<section class='panel' data-panel='photos'" + open("photos") + ">" +
+         "<h2>" + e(u.photos) + "</h2><div class='gal'>";
+    C.gallery.forEach(function(src, k){
+      h += "<button type='button' data-img='" + e(src) + "'><img src='" + e(src) + "' alt='" + e(t(C.name)) + " " + (k + 1) + "' loading='lazy'></button>";
+    });
+    h += "</div></section>";
+  }
+
+  /* ----- أوقات العمل ----- */
+  if((C.hours || []).length){
+    h += "<section class='panel'><h2>" + e(u.hours) + "</h2><div class='hrs'>";
+    C.hours.forEach(function(x){
+      h += "<div><b>" + e(t(x.days)) + "</b><span class='" + nc(x.time).trim() + "'>" + e(x.time) + "</span></div>";
+    });
+    h += "</div>";
+    if(t(C.hoursNote)) h += "<p class='note'>" + e(t(C.hoursNote)) + "</p>";
+    h += "</section>";
+  }
+
+  /* ----- الاتصال ----- */
+  var rows = "";
+  rows += row(C.phone ? "tel:" + C.phone : "", I.call, u.phone, C.phone);
+  rows += row(C.maps, I.pin, u.maps, t(C.address) || t(C.city), true);
+  rows += row(C.email ? "mailto:" + C.email : "", I.mail, u.mail, C.email);
+  rows += row(C.website, I.globe, u.web, String(C.website).replace(/^https?:\/\//,""), true);
+  (C.extraLinks || []).forEach(function(x){
+    if(x && x.url) rows += row(x.url, I.globe, u.link, t(x.label), true);
+  });
+  if(rows) h += "<section class='panel'><h2>" + e(u.contact) + "</h2><div class='rows'>" + rows + "</div></section>";
+
+  /* ----- التقييم ----- */
+  if(C.review){
+    var st = ""; for(var i = 0; i < 5; i++) st += I.star;
+    h += "<a class='rev' href='" + e(C.review) + "' target='_blank' rel='noopener'>" +
+         "<span class='st'>" + st + "</span><b>" + e(u.review) + "</b><small>" + e(u.reviewSub) + "</small></a>";
+  }
+
+  /* ----- التوقيع ----- */
+  if(C.brand && C.brand.name){
+    h += "<p class='ftr'>" + e(u.by) + " " +
+         (C.brand.url ? "<a href='" + e(C.brand.url) + "' target='_blank' rel='noopener'>" + e(C.brand.name) + "</a>" : e(C.brand.name)) +
+         "</p>";
+  }
+
+  document.getElementById("app").innerHTML = h;
+  wire();
+}
+
+/* ---------- التفاعل ---------- */
+function wire(){
+  var app = document.getElementById("app");
+
+  app.querySelectorAll(".langs button").forEach(function(b){
+    b.addEventListener("click", function(){
+      LANG = b.getAttribute("data-lang");
+      try{ localStorage.setItem("nfc4all-lang", LANG); }catch(e){}
+      render();
+      window.scrollTo(0, 0);
+    });
+  });
+
+  app.querySelectorAll(".tabs button").forEach(function(b){
+    b.addEventListener("click", function(){
+      var k = b.getAttribute("data-tab");
+      app.querySelectorAll(".tabs button").forEach(function(x){
+        x.setAttribute("aria-selected", String(x === b));
+      });
+      app.querySelectorAll("[data-panel]").forEach(function(p){
+        if(p.getAttribute("data-panel") === k) p.removeAttribute("hidden");
+        else p.setAttribute("hidden", "");
+      });
+    });
+  });
+
+  app.querySelectorAll(".gal button").forEach(function(b){
+    b.addEventListener("click", function(){
+      document.getElementById("lbi").src = b.getAttribute("data-img");
+      document.getElementById("lb").hidden = false;
+    });
+  });
+
+  var s = document.getElementById("btn-save");
+  if(s) s.addEventListener("click", saveContact);
+  var sh = document.getElementById("btn-share");
+  if(sh) sh.addEventListener("click", shareCard);
+}
+
+function toast(msg){
+  var el = document.getElementById("toast");
+  document.getElementById("toastx").textContent = msg;
+  el.hidden = false;
+  setTimeout(function(){ el.hidden = true; }, 2200);
+}
+
+function vcard(){
+  var v = C.vcard || {}, L = ["BEGIN:VCARD", "VERSION:3.0"];
+  var fn = v.firstName || t(C.name), ln = v.lastName || "";
+  L.push("N:" + ln + ";" + fn + ";;;");
+  L.push("FN:" + ((fn + " " + ln).trim()));
+  if(v.org)   L.push("ORG:" + v.org);
+  if(v.title) L.push("TITLE:" + v.title);
+  if(C.phone){ L.push("TEL;TYPE=CELL,VOICE:" + C.phone); L.push("TEL;TYPE=WORK,VOICE:" + C.phone); }
+  if(C.email)     L.push("EMAIL;TYPE=INTERNET:" + C.email);
+  if(C.website)   L.push("URL:" + C.website);
+  if(C.facebook)  L.push("X-SOCIALPROFILE;TYPE=facebook:" + C.facebook);
+  if(C.instagram) L.push("X-SOCIALPROFILE;TYPE=instagram:" + C.instagram);
+  if(C.tiktok)    L.push("X-SOCIALPROFILE;TYPE=tiktok:" + C.tiktok);
+  L.push("ADR;TYPE=WORK:;;" + (t(C.address) || "") + ";" + (t(C.city) || "") + ";;;");
+  L.push("URL;TYPE=card:" + location.href);
+  L.push("NOTE:" + t(C.role));
+  L.push("END:VCARD");
+  return L.join("\r\n");
+}
+
+function saveContact(){
+  try{
+    var b = new Blob([vcard()], {type:"text/vcard;charset=utf-8"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(b);
+    a.download = ((C.vcard && C.vcard.fileName) || "contact") + ".vcf";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 4000);
+  }catch(err){
+    location.href = "data:text/vcard;charset=utf-8," + encodeURIComponent(vcard());
+  }
+}
+
+function shareCard(){
+  var u = UI[LANG];
+  var data = { title: t(C.name), text: t(C.name) + " — " + t(C.role), url: location.href };
+  if(navigator.share){ navigator.share(data).catch(function(){}); return; }
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(location.href).then(function(){ toast(u.copied); }).catch(function(){});
+    return;
+  }
+  toast(u.copied);
+}
+
+document.getElementById("lbx").addEventListener("click", function(){
+  document.getElementById("lb").hidden = true;
+});
+document.getElementById("lb").addEventListener("click", function(ev){
+  if(ev.target.id !== "lbi") document.getElementById("lb").hidden = true;
+});
+document.addEventListener("keydown", function(ev){
+  if(ev.key === "Escape") document.getElementById("lb").hidden = true;
+});
+
+render();
+})();
+</script>
+</body>
+</html>
